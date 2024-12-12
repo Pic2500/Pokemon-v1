@@ -1,0 +1,681 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Press Start 2P", monospace;
+  background-color: #fff;
+  padding: 30px;
+  margin: 0;
+  border: 10px solid #f3f3f3;
+  border-radius: 25px;
+  position: relative;
+  color: #333;
+  text-align: center;
+  background-image: url("https://cdn.dribbble.com/userupload/17396547/file/original-01e41d538468847584f5345206eed9f5.png?resize=1600x1200&vertical=center");
+}
+
+.title-word {
+  animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #e21818;
+  --color-2: #d3caca;
+  --color-3: #c71a17;
+  animation: neon-red-white 4s linear infinite;
+}
+
+.title-word-2 {
+  --color-1: #d3caca;
+  --color-2: #e21818;
+  --color-3: #d3caca;
+  animation: neon-animation 4s linear infinite;
+}
+
+.title-word-3 {
+  --color-1: #e21818;
+  --color-2: #d3caca;
+  --color-3: #e21818;
+  animation: neon-red-white 4s linear infinite;
+}
+
+.title-word-4 {
+  --color-1: #d3caca;
+  --color-2: #e21818;
+  --color-3: #d3caca;
+  animation: neon-animation 4s linear infinite;
+}
+
+@keyframes neon-animation {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 15px #ff00ff,
+      0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff;
+    color: #ff00ff; /* Pink neon */
+  }
+  50% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 15px #00ffff,
+      0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 50px #00ffff;
+    color: #00ffff; /* Cyan neon */
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 15px #ff00ff,
+      0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff;
+    color: #ff00ff; /* Pink neon */
+  }
+}
+
+@keyframes neon-red-white {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff0000, 0 0 15px #ff0000,
+      0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000;
+    color: #ff0000; /* Red neon */
+  }
+  50% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ffffff, 0 0 15px #ffffff,
+      0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff;
+    color: #ffffff; /* White neon */
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff0000, 0 0 15px #ff0000,
+      0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000;
+    color: #ff0000; /* Red neon */
+  }
+}
+
+.title {
+  position: relative;
+  font-family: "Press Start 2P", monospace;
+  font-weight: 800;
+  font-size: 4vw;
+  text-transform: uppercase;
+  margin: 2em;
+  text-align: center;
+  color: #fff;
+  padding: 0.5em;
+  display: inline-block;
+}
+
+.title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 4px solid #00ff00;
+  border-radius: 15px;
+  animation: retroBorder 3s infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes retroBorder {
+  0% {
+    border-color: #00ff00;
+    box-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00;
+  }
+  25% {
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff;
+  }
+  50% {
+    border-color: #00ffff;
+    box-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
+  }
+  75% {
+    border-color: #ffff00;
+    box-shadow: 0 0 15px #ffff00, 0 0 25px #ffff00;
+  }
+  100% {
+    border-color: #ff0000;
+    box-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.wrapper {
+  padding: 2em;
+  min-height: 120vh;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: flex-start;
+  margin: auto;
+}
+
+.coach {
+  background: #c4e9b8;
+  border: 2px solid #d19018;
+  border-radius: 25px;
+  padding: 1em;
+  width: 25%;
+  margin-left: 10em;
+  text-align: left;
+  box-sizing: border-box;
+  transition: margin-top 0.3s;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+input[type="text"] {
+  font-family: "Press Start 2P", monospace;
+  background-color: rgba(142, 68, 173, 0.6);
+  border-radius: 10px;
+  color: white;
+  padding: 0.5em;
+  width: 60%;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+input[type="text"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 4px solid transparent;
+  border-radius: 10px;
+  animation: retroBorder 3s infinite alternate;
+  pointer-events: none;
+}
+
+button {
+  padding: 0.5em;
+  border-radius: 10px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  background-color: rgba(142, 68, 173, 0.6);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: "Press Start 2P", monospace;
+  position: relative;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 4px solid transparent;
+  border-radius: 10px;
+  animation: retroBorder 3s infinite alternate;
+  pointer-events: none;
+}
+
+button:hover {
+  background-color: rgba(142, 68, 173, 0.6);
+
+  transform: translateY(4px);
+}
+
+button:active {
+  background-color: #e4a316;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#trainerNameText {
+  font-size: 18px;
+  color: #d1d1d1;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20px;
+  display: none;
+}
+
+#trainerCityInput {
+  margin-top: 20px;
+}
+
+#trainerGradText {
+  font-size: 18px;
+  color: #d1d1d1;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20px;
+  display: none;
+}
+
+.flex-item {
+  background-color: rgba(142, 68, 173, 0.6);
+
+  border: 2px solid grey;
+  border-radius: 25px;
+  padding: 1em;
+  width: 45%;
+  height: 450px;
+  text-align: center;
+  box-sizing: border-box;
+  transition: margin-top 0.3s;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+h1 {
+  border: #c71a17;
+}
+
+h2,
+h3 {
+  margin-bottom: 1em;
+}
+
+::placeholder {
+  color: white;
+}
+
+.pokeball-img {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+  vertical-align: middle;
+  display: inline;
+  animation: rotatePokeball 2s linear infinite;
+}
+
+[id^="pokemonNameText"] {
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-top: -10px;
+}
+
+.pokemon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 25px;
+  padding: 1em;
+  width: 45%;
+  height: 450px;
+  text-align: center;
+  box-sizing: border-box;
+  transition: margin-top 0.3s;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.pokemon-item .pokemonSprite1 {
+  width: 400px;
+  height: auto;
+  margin-top: 20px;
+}
+
+.pokemon-item .moves {
+  font-size: 14px;
+  display: flex;
+  gap: 25px;
+  color: #c71a17;
+}
+
+#pokemonMoves1,
+#pokemonMoves2,
+#pokemonMoves3,
+#pokemonMoves4,
+#pokemonMoves5,
+#pokemonMoves6 {
+  padding: 10px;
+  margin: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.move {
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px;
+  color: #333;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+/* Fire-type moves */
+.move.fire {
+  background-color: #ff7043;
+  color: white;
+}
+
+/* Water-type moves */
+.move.water {
+  background-color: #29b6f6;
+  color: white;
+}
+
+/* Electric-type moves */
+.move.electric {
+  background-color: #ffeb3b;
+  color: white;
+}
+
+/* Grass-type moves */
+.move.grass {
+  background-color: #66bb6a;
+  color: white;
+}
+
+/* Bug-type moves */
+.move.bug {
+  background-color: #8bc34a;
+  color: white;
+}
+
+/* Poison-type moves */
+.move.poison {
+  background-color: #9c27b0;
+  color: white;
+}
+
+/* Psychic-type moves */
+.move.psychic {
+  background-color: #ab47bc;
+  color: white;
+}
+
+/* Fighting-type moves */
+.move.fighting {
+  background-color: #d32f2f;
+  color: white;
+}
+
+/* Rock-type moves */
+.move.rock {
+  background-color: #f57c00;
+  color: white;
+}
+
+/* Ice-type moves */
+.move.ice {
+  background-color: #00bcd4;
+  color: white;
+}
+
+/* Dragon-type moves */
+.move.dragon {
+  background-color: #e91e63;
+  color: white;
+}
+
+/* Fairy-type moves */
+.move.fairy {
+  background-color: #f48fb1;
+  color: white;
+}
+
+/* Ghost-type moves */
+.move.ghost {
+  background-color: #673ab7;
+  color: white;
+}
+
+/* Steel-type moves */
+.move.steel {
+  background-color: #607d8b;
+  color: white;
+}
+
+/* Normal-type moves */
+.move.normal {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+/* Dark-type moves */
+.move.dark {
+  background-color: #212121;
+  color: white;
+}
+
+/* Flying-type moves */
+.move.flying {
+  background-color: #039be5;
+  color: white;
+}
+
+/* Ghost-type moves */
+.move.ghost {
+  background-color: #9b4d96;
+  color: white;
+}
+
+/* Ground-type moves */
+.move.ground {
+  background-color: #8d6e63;
+  color: white;
+}
+
+/* Fairy-type moves */
+.move.fairy {
+  background-color: #f48fb1;
+  color: white;
+}
+
+/* Dark-type moves */
+.move.dark {
+  background-color: #212121;
+  color: white;
+}
+
+/* Ice-type moves */
+.move.ice {
+  background-color: #00bcd4;
+  color: white;
+}
+
+.pokemon-item .move:hover {
+  background-color: #e0e0e039;
+}
+
+button:hover {
+  background-color: #e45016;
+  transform: translateY(4px);
+}
+
+.button:active {
+  background-color: #e4a316;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.flex-container > .flex-item:nth-child(odd) {
+  margin-top: 0;
+}
+
+.flex-container > .flex-item:nth-child(even) {
+  transform: translateY(4em);
+}
+
+.flex-container > .flex-item:nth-child(7) {
+  width: 500px;
+  height: 25%;
+  margin: 2em auto;
+  transform: translateY(4em);
+}
+
+#confirmation {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 18px;
+  padding: 15px 30px;
+}
+
+#confirmButton {
+  font-size: 18px;
+  padding: 15px 30px;
+}
+
+#finalTeam {
+  margin-top: 50px;
+  text-align: center;
+}
+
+@keyframes rotatePokeball {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(360deg);
+    border-radius: 60%;
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.spin {
+  animation: spin 4s ease-out 1;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+@keyframes goBig {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.goBig {
+  animation: goBig 1s ease-in 1;
+}
+
+@media screen and (max-width: 600px) {
+  .Coach {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .Coach input[type="text"],
+  .Coach button {
+    width: 100%;
+  }
+}
+
+h1 + #finalTeam {
+  margin-top: 20px;
+}
+
+.customizer {
+  text-align: center;
+}
+
+.trainer-selector {
+  display: flex;
+  align-items: center;
+}
+
+.trainer-selector img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 20px;
+}
+
+.arrow {
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.arrow:hover {
+  background-color: #ff9900;
+}
+
+.left {
+  transform: rotate(360deg);
+}
+
+.right {
+  transform: rotate(0deg);
+}
+.trainer-selector button,
+#trainer-icon {
+  display: none;
+}

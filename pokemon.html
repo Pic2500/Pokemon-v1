@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="pokemon.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1 class="title">
+      <span class="title-word title-word-1">Choose </span>
+      <span class="title-word title-word-2">your </span>
+      <span class="title-word title-word-3">pokemon</span>
+      <span class="title-word title-word-4">team</span>
+    </h1>
+    <div class="Coach">
+      <input
+        type="text"
+        id="trainerName"
+        placeholder="Enter your Trainer name"
+      />
+      <button onclick="setTrainerName()">Press</button>
+
+      <p id="trainerNameText" style="display: none"></p>
+
+      <div id="trainerCityInput" style="display: none">
+        <input type="text" id="trainerGrad" placeholder="Enter City name" />
+        <button onclick="setTrainerGrad()">Press</button>
+      </div>
+
+      <p id="trainerGradText" style="display: none"></p>
+    </div>
+
+    <div class="wrapper flex-container">
+      <div class="flex-item" id="pokemonItem1" style="display: none">
+        <h2>
+          <img
+            src="./Pokemon images/pokeball.png"
+            alt="Pokéball"
+            class="pokeball-img"
+          />
+          <span class="title-word title-word-4">Pokemon</span>
+          <span class="title-word title-word-2">Num</span>
+          <span class="title-word title-word-3">1</span>
+        </h2>
+
+        <input type="text" id="pokemonName1" placeholder="Pokemon name" />
+        <button
+          onclick="fetchData('pokemonName1', 'pokemonSprite1', 'pokemonNameText1', 'pokemonItem1', 'pokemonMoves1')"
+        >
+          Choose pokemon</button
+        ><br />
+
+        <img
+          src=""
+          alt="Pokemon Sprite"
+          id="pokemonSprite1"
+          class="spin"
+          style="display: none"
+        />
+        <div id="pokemonMoves1" style="display: none"></div>
+        <p id="pokemonNameText1" style="display: none"></p>
+      </div>
+
+      <div class="flex-item" id="pokemonItem2" style="display: none">
+        <h2>
+          <img
+            src="./Pokemon images/pokeball.png"
+            alt="Pokéball"
+            class="pokeball-img"
+          />
+          <span class="title-word title-word-4">Pokemon</span>
+          <span class="title-word title-word-2">Num</span>
+          <span class="title-word title-word-3">2</span>
+        </h2>
+
+        <input type="text" id="pokemonName2" placeholder="Pokemon name" />
+        <button
+          onclick="fetchData('pokemonName2', 'pokemonSprite2', 'pokemonNameText2', 'pokemonItem2', 'pokemonMoves2')"
+        >
+          Choose pokemon</button
+        ><br />
+
+        <img
+          src=""
+          alt="Pokemon Sprite"
+          id="pokemonSprite2"
+          class="shake"
+          style="display: none"
+        />
+        <div id="pokemonMoves2" style="display: none"></div>
+        <p id="pokemonNameText2" style="display: none"></p>
+      </div>
+
+      <div class="flex-item" id="pokemonItem3" style="display: none">
+        <h2>
+          <img
+            src="./Pokemon images/pokeball.png"
+            alt="Pokéball"
+            class="pokeball-img"
+          />
+          <span class="title-word title-word-4">Pokemon</span>
+          <span class="title-word title-word-2">Num</span>
+          <span class="title-word title-word-3">3</span>
+        </h2>
+
+        <input type="text" id="pokemonName3" placeholder="Pokemon name" />
+        <button
+          onclick="fetchData('pokemonName3', 'pokemonSprite3', 'pokemonNameText3', 'pokemonItem3', 'pokemonMoves3')"
+        >
+          Choose pokemon</button
+        ><br />
+
+        <img
+          src=""
+          alt="Pokemon Sprite"
+          id="pokemonSprite3"
+          class="spin"
+          style="display: none"
+        />
+        <div id="pokemonMoves3" style="display: none"></div>
+        <p id="pokemonNameText3" style="display: none"></p>
+      </div>
+
+      <div class="flex-item" id="pokemonItem4" style="display: none">
+        <h2>
+          <img
+            src="./Pokemon images/pokeball.png"
+            alt="Pokéball"
+            class="pokeball-img"
+          />
+          <span class="title-word title-word-4">Pokemon</span>
+          <span class="title-word title-word-2">Num</span>
+          <span class="title-word title-word-3">4</span>
+        </h2>
+
+        <input type="text" id="pokemonName4" placeholder="Pokemon name" />
+        <button
+          onclick="fetchData('pokemonName4', 'pokemonSprite4', 'pokemonNameText4', 'pokemonItem4', 'pokemonMoves4')"
+        >
+          Choose pokemon</button
+        ><br />
+
+        <img
+          src=""
+          alt="Pokemon Sprite"
+          id="pokemonSprite4"
+          class="spin"
+          style="display: none"
+        />
+        <div id="pokemonMoves4" style="display: none"></div>
+        <p id="pokemonNameText4" style="display: none"></p>
+      </div>
+
+      <div class="flex-item" id="pokemonItem5" style="display: none">
+        <h2>
+          <img
+            src="./Pokemon images/pokeball.png"
+            alt="Pokéball"
+            class="pokeball-img"
+          />
+          <span class="title-word title-word-4">Pokemon</span>
+          <span class="title-word title-word-2">Num</span>
+          <span class="title-word title-word-3">5</span>
+        </h2>
+
+        <input type="text" id="pokemonName5" placeholder="Pokemon name" />
+        <button
+          onclick="fetchData('pokemonName5', 'pokemonSprite5', 'pokemonNameText5', 'pokemonItem5', 'pokemonMoves5')"
+        >
+          Choose pokemon</button
+        ><br />
+
+        <img
+          src=""
+          alt="Pokemon Sprite"
+          id="pokemonSprite5"
+          class="spin"
+          style="display: none"
+        />
+        <div id="pokemonMoves5" style="display: none"></div>
+        <p id="pokemonNameText5" style="display: none"></p>
+      </div>
+
+      <div class="flex-item" id="pokemonItem6" style="display: none">
+        <h2>
+          <img
+            src="./Pokemon images/pokeball.png"
+            alt="Pokéball"
+            class="pokeball-img"
+          />
+          <span class="title-word title-word-4">Pokemon</span>
+          <span class="title-word title-word-2">Num</span>
+          <span class="title-word title-word-3">6</span>
+        </h2>
+
+        <input type="text" id="pokemonName6" placeholder="Pokemon name" />
+        <button
+          onclick="fetchData('pokemonName6', 'pokemonSprite6', 'pokemonNameText6', 'pokemonItem6', 'pokemonMoves6')"
+        >
+          Choose pokemon</button
+        ><br />
+
+        <img
+          src=""
+          alt="Pokemon Sprite"
+          id="pokemonSprite6"
+          class="spin"
+          style="display: none"
+        />
+        <div id="pokemonMoves6" style="display: none"></div>
+        <p id="pokemonNameText6" style="display: none"></p>
+      </div>
+    </div>
+
+    <div id="confirmation" class="hidden">
+      <p>Are you sure this is the Pokémon team you want?</p>
+      <button id="confirm-team-btn">Confirm</button>
+    </div>
+    <div id="finalTeam" class="hidden"></div>
+    <div class="customizer" class="hidden">
+      <div class="trainer-selector">
+        <button
+          onclick="changeTrainer(-1)"
+          class="arrow left"
+          style="display: none"
+        >
+          ◀
+        </button>
+        <img
+          id="trainer-icon"
+          src="./Pokemon images/assets/trainers/trainer1.png"
+          alt="Trainer Icon"
+        />
+        <button
+          onclick="changeTrainer(1)"
+          class="arrow right"
+          style="display: none"
+        >
+          ▶
+        </button>
+      </div>
+    </div>
+    <script src="./pokemon.js"></script>
+  </body>
+</html>

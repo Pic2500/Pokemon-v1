@@ -11,7 +11,7 @@ function setTrainerName() {
   if (trainerName) {
     trainerNameText.textContent = "";
 
-    const greetingMessage = `Pozdrav, treneru ${trainerName}`;
+    const greetingMessage = `Hello, trainer ${trainerName}`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -28,7 +28,7 @@ function setTrainerName() {
 
     trainerNameText.style.display = "block";
   } else {
-    trainerNameText.textContent = "Molimo unesite ime Trenera!";
+    trainerNameText.textContent = "Please write Trainer name!";
     trainerNameText.style.display = "block";
   }
 }
@@ -41,7 +41,7 @@ function setTrainerGrad() {
   if (trainerGrad) {
     trainerGradText.textContent = "";
 
-    const cityMessage = `Trener ${trainerName} dolazi iz grada ${trainerGrad}!`;
+    const cityMessage = `Trainer ${trainerName} comes from ${trainerGrad}!`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -57,7 +57,7 @@ function setTrainerGrad() {
 
     trainerGradText.style.display = "block";
   } else {
-    trainerGradText.textContent = "Molimo unesite ime Grada!";
+    trainerGradText.textContent = "Please enter city name!";
     trainerGradText.style.display = "block";
   }
 }
@@ -122,7 +122,7 @@ async function fetchData(inputId, imgId, nameId, itemId, movesId) {
     .toLowerCase();
 
   if (!pokemonName) {
-    alert("Molimo unesite ime Pokemona!");
+    alert("Please enter Pokemon name!");
     return;
   }
 
@@ -132,7 +132,7 @@ async function fetchData(inputId, imgId, nameId, itemId, movesId) {
     );
 
     if (!response.ok) {
-      throw new Error("Pokemon nije pronađen!");
+      throw new Error("Pokemon not found!");
     }
 
     const data = await response.json();
@@ -187,7 +187,7 @@ async function fetchData(inputId, imgId, nameId, itemId, movesId) {
     }
   } catch (error) {
     console.error(error);
-    alert("Došlo je do greške: " + error.message);
+    alert("Error: " + error.message);
   }
 }
 
@@ -266,33 +266,30 @@ pokemonNameInputs.forEach((input) => {
 
 const coachDiv = document.querySelector(".Coach");
 
-// Define your trainer images
 const trainers = [
   "trainer1.png", // 1. lik
   "trainer2.png", // 2. lik
   "trainer3.png", // 3. lik
   "trainer4.png", // 4. lik
+  "trainer5.png", // 5. lik
+  "trainer6.png", // 6. lik
+  "trainer7.png", // 7. lik
 ];
 
 let currentTrainerIndex = 0;
 
 function changeTrainer(direction) {
-  // Adjust trainer index
   currentTrainerIndex += direction;
 
-  // Ensure index is within range
   if (currentTrainerIndex < 0) {
     currentTrainerIndex = trainers.length - 1;
   } else if (currentTrainerIndex >= trainers.length) {
     currentTrainerIndex = 0;
   }
 
-  // Change trainer icon
   const trainerIcon = document.getElementById("trainer-icon");
   trainerIcon.src = `assets/trainers/${trainers[currentTrainerIndex]}`;
 }
-
-// Your existing functions like setTrainerName(), setTrainerGrad(), etc.
 
 document
   .getElementById("confirm-team-btn")
@@ -301,7 +298,6 @@ document
     const trainerGrad = document.getElementById("trainerGrad").value;
     const selectedPokemon = await getPokemonNames();
 
-    // Hide the Pokémon input section
     for (let i = 1; i <= 6; i++) {
       const pokemonItemDiv = document.getElementById(`pokemonItem${i}`);
       if (pokemonItemDiv) {
@@ -309,17 +305,14 @@ document
       }
     }
 
-    // Hide the confirmation div
     const confirmationDiv = document.getElementById("confirmation");
     confirmationDiv.classList.add("hidden");
 
-    // Update the page title
     const title = document.querySelector("h1");
     if (title) {
       title.textContent = "Odabir Avanture";
     }
 
-    // Show the final team section
     const finalTeamDiv = document.getElementById("finalTeam");
     finalTeamDiv.classList.remove("hidden");
     finalTeamDiv.innerHTML = `  
@@ -342,14 +335,11 @@ document
     `;
     }
 
-    // After final team is displayed, show the trainer selector and append below the final team
     const trainerCustomizer = document.getElementById("trainer-customizer");
     trainerCustomizer.classList.remove("hidden");
 
-    // Show the trainer image after final team is shown
     const trainerIcon = document.getElementById("trainer-icon");
-    trainerIcon.style.display = "block"; // Show the trainer image
+    trainerIcon.style.display = "block";
 
-    // Append trainer customizer below the final team
     finalTeamDiv.insertAdjacentElement("afterend", trainerCustomizer);
   });

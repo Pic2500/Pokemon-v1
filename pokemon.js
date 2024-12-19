@@ -299,7 +299,7 @@ document
     finalTeamDiv.classList.remove("hidden");
     finalTeamDiv.innerHTML = `
     <h2>Trainer ${trainerName}, this is your Pokémon team!</h2>
-    <p>Your starting point is ${trainerGrad}!</p>
+    
   `;
 
     // Append Pokémon images and names
@@ -330,46 +330,62 @@ document
     } else {
       console.log("Customizer div not found.");
     }
+    finalTeam.insertAdjacentElement("afterend", customizer);
   });
 
-// Initialize the trainer selection logic
-let currentTrainer = 0;
-const trainers = [
-  "trainer1.png",
-  "trainer2.png",
-  "trainer3.png", // Add more trainers as needed
+// Array of trainer image paths
+const trainerImages = [
+  "Pokemonimages/assets/trainers/trainer1.png",
+  "Pokemonimages/assets/trainers/trainer2.png",
+  "Pokemonimages/assets/trainers/trainer3.png",
+  "Pokemonimages/assets/trainers/trainer4.png",
+  "Pokemonimages/assets/trainers/trainer5.png",
+  "Pokemonimages/assets/trainers/trainer6.png",
+  "Pokemonimages/assets/trainers/trainer7.png",
+  "Pokemonimages/assets/trainers/trainer8.png",
+  "Pokemonimages/assets/trainers/trainer9.png",
+  "Pokemonimages/assets/trainers/trainer10.png",
+  "Pokemonimages/assets/trainers/trainer11.png",
+  "Pokemonimages/assets/trainers/trainer12.png",
+  "Pokemonimages/assets/trainers/trainer13.png",
 ];
 
-const trainerIcon = document.getElementById("trainer-icon");
-const leftArrow = document.getElementById("left-arrow");
-const rightArrow = document.getElementById("right-arrow");
+document.addEventListener("DOMContentLoaded", () => {
+  const trainerIcon = document.getElementById("trainer-icon");
+  const leftArrow = document.getElementById("left-arrow");
+  const rightArrow = document.getElementById("right-arrow");
 
-// Set initial trainer
-trainerIcon.src = trainers[currentTrainer];
+  const trainers = trainerImages;
 
-// Disable/Enable arrows based on position
-function updateArrowState() {
-  leftArrow.disabled = currentTrainer === 0;
-  rightArrow.disabled = currentTrainer === trainers.length - 1;
-}
+  let currentTrainer = 0;
 
-// Handle left arrow click
-leftArrow.addEventListener("click", () => {
-  if (currentTrainer > 0) {
-    currentTrainer--;
-    trainerIcon.src = trainers[currentTrainer];
-    updateArrowState();
+  // Set initial trainer image
+  trainerIcon.src = trainers[currentTrainer];
+
+  // Update arrow states
+  function updateArrowState() {
+    leftArrow.disabled = currentTrainer === 0;
+    rightArrow.disabled = currentTrainer === trainers.length - 1;
   }
-});
 
-// Handle right arrow click
-rightArrow.addEventListener("click", () => {
-  if (currentTrainer < trainers.length - 1) {
-    currentTrainer++;
-    trainerIcon.src = trainers[currentTrainer];
-    updateArrowState();
-  }
-});
+  // Left arrow functionality
+  leftArrow.addEventListener("click", () => {
+    if (currentTrainer > 0) {
+      currentTrainer--;
+      trainerIcon.src = trainers[currentTrainer];
+      updateArrowState();
+    }
+  });
 
-// Initialize arrows
-updateArrowState();
+  // Right arrow functionality
+  rightArrow.addEventListener("click", () => {
+    if (currentTrainer < trainers.length - 1) {
+      currentTrainer++;
+      trainerIcon.src = trainers[currentTrainer];
+      updateArrowState();
+    }
+  });
+
+  // Initialize arrow states
+  updateArrowState();
+});

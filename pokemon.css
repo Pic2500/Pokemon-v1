@@ -85,6 +85,60 @@ body {
   }
 }
 
+@keyframes neon-cyan-white {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 15px #00ffff,
+      0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 50px #00ffff;
+    color: #00ffff; /* Cyan neon */
+  }
+  50% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ffffff, 0 0 15px #ffffff,
+      0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff;
+    color: #ffffff; /* White neon */
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 15px #00ffff,
+      0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 50px #00ffff;
+    color: #00ffff; /* Cyan neon */
+  }
+}
+
+@keyframes neon-yellow-orange {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ffff00, 0 0 15px #ffff00,
+      0 0 20px #ffff00, 0 0 30px #ffff00, 0 0 40px #ffff00, 0 0 50px #ffff00;
+    color: #ffff00; /* Yellow neon */
+  }
+  50% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff7f00, 0 0 15px #ff7f00,
+      0 0 20px #ff7f00, 0 0 30px #ff7f00, 0 0 40px #ff7f00, 0 0 50px #ff7f00;
+    color: #ff7f00; /* Orange neon */
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #ffff00, 0 0 15px #ffff00,
+      0 0 20px #ffff00, 0 0 30px #ffff00, 0 0 40px #ffff00, 0 0 50px #ffff00;
+    color: #ffff00; /* Yellow neon */
+  }
+}
+
+@keyframes soft-neon-green-gray {
+  0% {
+    text-shadow: 0 0 2px darkgreen, 0 0 4px darkgreen, 0 0 6px darkgreen,
+      0 0 8px darkgreen, 0 0 10px darkgreen;
+    color: darkgreen; /* Soft Green neon */
+  }
+  50% {
+    text-shadow: 0 0 2px lightgray, 0 0 4px darkgreen, 0 0 6px darkgreen,
+      0 0 8px darkgreen, 0 0 10px darkgreen;
+    color: darkgreen; /* Soft Gray */
+  }
+  100% {
+    text-shadow: 0 0 2px darkgreen, 0 0 4px darkgreen, 0 0 6px darkgreen,
+      0 0 8px darkgreen, 0 0 10px darkgreen;
+    color: darkgreen; /* Soft Green neon */
+  }
+}
+
 .title {
   position: relative;
   font-family: "Press Start 2P", monospace;
@@ -533,6 +587,12 @@ button:hover {
   text-align: center;
 }
 
+#finalTeam,
+#confirmation,
+#customizer {
+  animation: soft-neon-green-gray 4s linear infinite;
+}
+
 @keyframes rotatePokeball {
   0% {
     transform: rotate(0deg);
@@ -640,23 +700,23 @@ button:hover {
 #customizer {
   display: none; /* Initially hidden */
   text-align: center;
-  margin-top: 20px;
-  border-top: 2px solid #ccc;
+  margin-top: 30px; /* Adjust the margin to be 30px below final team */
+  margin-bottom: 20px;
   padding-top: 10px;
 }
 
-/* Trainer selector layout */
-.trainer-selector {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+#trainer-customizer {
+  display: flex; /* Use flexbox to align items horizontally */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  gap: 20px; /* Space between the image and arrows */
+  position: relative;
 }
 
-/* Style for arrow buttons */
 .arrow {
-  font-size: 24px;
-  padding: 10px;
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   background-color: #ffcc00;
   border: none;
@@ -664,26 +724,27 @@ button:hover {
   transition: background-color 0.3s;
 }
 
-/* Hover effect for arrows */
 .arrow:hover {
   background-color: #ff9900;
 }
 
-/* Trainer icon */
-.trainer-selector img {
-  width: 150px;
-  height: 150px;
+#trainer-icon {
+  width: 200px;
+  height: 200px;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
 
-/* Hiding buttons and icons for invalid states */
-.trainer-selector button:disabled {
+.trainer-customizer button:disabled {
   background-color: #ddd;
   cursor: not-allowed;
 }
 
-.trainer-selector button,
-#trainer-icon {
-  display: none;
+#trainer-customizer button {
+  display: inline-block;
+}
+
+#final-team,
+#customizer {
+  clear: both;
 }

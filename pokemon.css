@@ -271,6 +271,7 @@ button:active {
 
 h1 {
   border: #c71a17;
+  margin-top: 20px;
 }
 
 h2,
@@ -527,7 +528,8 @@ button:hover {
 }
 
 #finalTeam {
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -634,26 +636,24 @@ button:hover {
   }
 }
 
-h1 + #finalTeam {
-  margin-top: 20px;
-}
-
-.customizer {
+/* Initially hide the customizer */
+#customizer {
+  display: none; /* Initially hidden */
   text-align: center;
+  margin-top: 20px;
+  border-top: 2px solid #ccc;
+  padding-top: 10px;
 }
 
+/* Trainer selector layout */
 .trainer-selector {
   display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 
-.trainer-selector img {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  margin: 0 20px;
-}
-
+/* Style for arrow buttons */
 .arrow {
   font-size: 24px;
   padding: 10px;
@@ -664,17 +664,25 @@ h1 + #finalTeam {
   transition: background-color 0.3s;
 }
 
+/* Hover effect for arrows */
 .arrow:hover {
   background-color: #ff9900;
 }
 
-.left {
-  transform: rotate(360deg);
+/* Trainer icon */
+.trainer-selector img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-.right {
-  transform: rotate(0deg);
+/* Hiding buttons and icons for invalid states */
+.trainer-selector button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
+
 .trainer-selector button,
 #trainer-icon {
   display: none;

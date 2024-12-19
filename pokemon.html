@@ -39,7 +39,7 @@
       <div class="flex-item" id="pokemonItem1" style="display: none">
         <h2>
           <img
-            src="./Pokemon images/pokeball.png"
+            src="./Pokemonimages/pokeball.png"
             alt="Pokéball"
             class="pokeball-img"
           />
@@ -69,7 +69,7 @@
       <div class="flex-item" id="pokemonItem2" style="display: none">
         <h2>
           <img
-            src="./Pokemon images/pokeball.png"
+            src="./Pokemonimages/pokeball.png"
             alt="Pokéball"
             class="pokeball-img"
           />
@@ -99,7 +99,7 @@
       <div class="flex-item" id="pokemonItem3" style="display: none">
         <h2>
           <img
-            src="./Pokemon images/pokeball.png"
+            src="./Pokemonimages/pokeball.png"
             alt="Pokéball"
             class="pokeball-img"
           />
@@ -129,7 +129,7 @@
       <div class="flex-item" id="pokemonItem4" style="display: none">
         <h2>
           <img
-            src="./Pokemon images/pokeball.png"
+            src="./Pokemonimages/pokeball.png"
             alt="Pokéball"
             class="pokeball-img"
           />
@@ -159,7 +159,7 @@
       <div class="flex-item" id="pokemonItem5" style="display: none">
         <h2>
           <img
-            src="./Pokemon images/pokeball.png"
+            src="./Pokemonimages/pokeball.png"
             alt="Pokéball"
             class="pokeball-img"
           />
@@ -189,7 +189,7 @@
       <div class="flex-item" id="pokemonItem6" style="display: none">
         <h2>
           <img
-            src="./Pokemon images/pokeball.png"
+            src="./Pokemonimages/pokeball.png"
             alt="Pokéball"
             class="pokeball-img"
           />
@@ -222,27 +222,17 @@
       <button id="confirm-team-btn">Confirm</button>
     </div>
     <div id="finalTeam" class="hidden"></div>
-    <div class="customizer" class="hidden">
+    <div id="customizer" class="hidden">
+      <h3>Select Your Trainer</h3>
       <div class="trainer-selector">
-        <button
-          onclick="changeTrainer(-1)"
-          class="arrow left"
-          style="display: none"
-        >
-          ◀
-        </button>
+        <button id="left-arrow" class="arrow left">&#8592;</button>
         <img
           id="trainer-icon"
-          src="./Pokemon images/assets/trainers/trainer1.png"
-          alt="Trainer Icon"
+          src="Pokemonimages\assets\trainers\trainer1.png"
+          alt="Trainer"
         />
-        <button
-          onclick="changeTrainer(1)"
-          class="arrow right"
-          style="display: none"
-        >
-          ▶
-        </button>
+
+        <button id="right-arrow" class="arrow right">&#8594;</button>
       </div>
     </div>
     <script src="./pokemon.js"></script>

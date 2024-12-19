@@ -264,33 +264,6 @@ pokemonNameInputs.forEach((input) => {
   }
 });
 
-const coachDiv = document.querySelector(".Coach");
-
-const trainers = [
-  "trainer1.png", // 1. lik
-  "trainer2.png", // 2. lik
-  "trainer3.png", // 3. lik
-  "trainer4.png", // 4. lik
-  "trainer5.png", // 5. lik
-  "trainer6.png", // 6. lik
-  "trainer7.png", // 7. lik
-];
-
-let currentTrainerIndex = 0;
-
-function changeTrainer(direction) {
-  currentTrainerIndex += direction;
-
-  if (currentTrainerIndex < 0) {
-    currentTrainerIndex = trainers.length - 1;
-  } else if (currentTrainerIndex >= trainers.length) {
-    currentTrainerIndex = 0;
-  }
-
-  const trainerIcon = document.getElementById("trainer-icon");
-  trainerIcon.src = `assets/trainers/${trainers[currentTrainerIndex]}`;
-}
-
 document
   .getElementById("confirm-team-btn")
   .addEventListener("click", async () => {
@@ -298,6 +271,7 @@ document
     const trainerGrad = document.getElementById("trainerGrad").value;
     const selectedPokemon = await getPokemonNames();
 
+    // Hide all Pokémon input items
     for (let i = 1; i <= 6; i++) {
       const pokemonItemDiv = document.getElementById(`pokemonItem${i}`);
       if (pokemonItemDiv) {
@@ -305,21 +279,30 @@ document
       }
     }
 
+    // Hide confirmation div and coach section
     const confirmationDiv = document.getElementById("confirmation");
     confirmationDiv.classList.add("hidden");
 
-    const title = document.querySelector("h1");
-    if (title) {
-      title.textContent = "Odabir Avanture";
+    const coachDiv = document.querySelector(".Coach");
+    if (coachDiv) {
+      coachDiv.style.display = "none"; // Hide the Coach section
     }
 
+    // Update title
+    const title = document.querySelector("h1");
+    if (title) {
+      title.textContent = "Your Adventure Begins!";
+    }
+
+    // Clear and update final team div
     const finalTeamDiv = document.getElementById("finalTeam");
     finalTeamDiv.classList.remove("hidden");
-    finalTeamDiv.innerHTML = `  
-    <h2>Trainer ${trainerName}, this is your Pokémon team! Are you ready for ADVENTURE?</h2>
+    finalTeamDiv.innerHTML = `
+    <h2>Trainer ${trainerName}, this is your Pokémon team!</h2>
     <p>Your starting point is ${trainerGrad}!</p>
   `;
 
+    // Append Pokémon images and names
     for (const pokemon of selectedPokemon) {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${pokemon}`
@@ -327,7 +310,7 @@ document
       const data = await response.json();
       const spriteURL = data.sprites.other["official-artwork"].front_default;
 
-      finalTeamDiv.innerHTML += ` 
+      finalTeamDiv.innerHTML += `
       <div style="display: inline-block; text-align: center; margin: 10px;">
         <img src="${spriteURL}" alt="${pokemon}" style="width: 100px; height: 100px;">
         <p>${pokemon}</p>
@@ -335,11 +318,58 @@ document
     `;
     }
 
-    const trainerCustomizer = document.getElementById("trainer-customizer");
-    trainerCustomizer.classList.remove("hidden");
+    // Insert final team div immediately after the title
+    title.insertAdjacentElement("afterend", finalTeamDiv);
 
-    const trainerIcon = document.getElementById("trainer-icon");
-    trainerIcon.style.display = "block";
-
-    finalTeamDiv.insertAdjacentElement("afterend", trainerCustomizer);
+    // Show the customizer below the final team div
+    const customizerDiv = document.getElementById("customizer");
+    if (customizerDiv) {
+      console.log("Revealing customizer.");
+      customizerDiv.classList.remove("hidden"); // Ensure the customizer is shown
+      customizerDiv.style.display = "block"; // Ensure it's visible in the layout
+    } else {
+      console.log("Customizer div not found.");
+    }
   });
+
+// Initialize the trainer selection logic
+let currentTrainer = 0;
+const trainers = [
+  "trainer1.png",
+  "trainer2.png",
+  "trainer3.png", // Add more trainers as needed
+];
+
+const trainerIcon = document.getElementById("trainer-icon");
+const leftArrow = document.getElementById("left-arrow");
+const rightArrow = document.getElementById("right-arrow");
+
+// Set initial trainer
+trainerIcon.src = trainers[currentTrainer];
+
+// Disable/Enable arrows based on position
+function updateArrowState() {
+  leftArrow.disabled = currentTrainer === 0;
+  rightArrow.disabled = currentTrainer === trainers.length - 1;
+}
+
+// Handle left arrow click
+leftArrow.addEventListener("click", () => {
+  if (currentTrainer > 0) {
+    currentTrainer--;
+    trainerIcon.src = trainers[currentTrainer];
+    updateArrowState();
+  }
+});
+
+// Handle right arrow click
+rightArrow.addEventListener("click", () => {
+  if (currentTrainer < trainers.length - 1) {
+    currentTrainer++;
+    trainerIcon.src = trainers[currentTrainer];
+    updateArrowState();
+  }
+});
+
+// Initialize arrows
+updateArrowState();

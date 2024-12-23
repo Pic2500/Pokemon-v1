@@ -333,31 +333,33 @@ document
     finalTeam.insertAdjacentElement("afterend", customizer);
   });
 
-// Array of trainer image paths
-const trainerImages = [
-  "Pokemonimages/assets/trainers/trainer1.png",
-  "Pokemonimages/assets/trainers/trainer2.png",
-  "Pokemonimages/assets/trainers/trainer3.png",
-  "Pokemonimages/assets/trainers/trainer4.png",
-  "Pokemonimages/assets/trainers/trainer5.png",
-  "Pokemonimages/assets/trainers/trainer6.png",
-  "Pokemonimages/assets/trainers/trainer7.png",
-  "Pokemonimages/assets/trainers/trainer8.png",
-  "Pokemonimages/assets/trainers/trainer9.png",
-  "Pokemonimages/assets/trainers/trainer10.png",
-  "Pokemonimages/assets/trainers/trainer11.png",
-  "Pokemonimages/assets/trainers/trainer12.png",
-  "Pokemonimages/assets/trainers/trainer13.png",
-];
-
 document.addEventListener("DOMContentLoaded", () => {
   const trainerIcon = document.getElementById("trainer-icon");
   const leftArrow = document.getElementById("left-arrow");
   const rightArrow = document.getElementById("right-arrow");
-
-  const trainers = trainerImages;
+  const selectTrainerButton = document.getElementById("select-trainer"); // Select button
+  const title = document.querySelector("h1"); // Title element
+  const finalTeamDiv = document.getElementById("finalTeam"); // Final Team section
+  const confirmationDiv = document.getElementById("confirmation"); // Confirmation section
+  const customizerDiv = document.getElementById("customizer"); // Customization section
 
   let currentTrainer = 0;
+
+  const trainers = [
+    "Pokemonimages/assets/trainers/trainer1.png",
+    "Pokemonimages/assets/trainers/trainer2.png",
+    "Pokemonimages/assets/trainers/trainer3.png",
+    "Pokemonimages/assets/trainers/trainer4.png",
+    "Pokemonimages/assets/trainers/trainer5.png",
+    "Pokemonimages/assets/trainers/trainer6.png",
+    "Pokemonimages/assets/trainers/trainer7.png",
+    "Pokemonimages/assets/trainers/trainer8.png",
+    "Pokemonimages/assets/trainers/trainer9.png",
+    "Pokemonimages/assets/trainers/trainer10.png",
+    "Pokemonimages/assets/trainers/trainer11.png",
+    "Pokemonimages/assets/trainers/trainer12.png",
+    "Pokemonimages/assets/trainers/trainer13.png",
+  ];
 
   // Set initial trainer image
   trainerIcon.src = trainers[currentTrainer];
@@ -388,4 +390,93 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize arrow states
   updateArrowState();
+
+  // Handle trainer selection
+  selectTrainerButton.addEventListener("click", () => {
+    const selectedTrainerImage = trainers[currentTrainer];
+
+    // Lock the selected trainer
+    trainerIcon.src = selectedTrainerImage;
+
+    // Hide final team, confirmation, and customizer sections
+    finalTeamDiv.style.display = "none";
+    confirmationDiv.classList.add("hidden");
+    customizerDiv.style.display = "none"; // Hide the customization section
+
+    // Update the title to "Beginning"
+    title.textContent = "Beginning";
+
+    // Create container for top-right corner images
+    const topRightCornerContainer = document.createElement("div");
+    topRightCornerContainer.style.position = "absolute";
+    topRightCornerContainer.style.top = "20px";
+    topRightCornerContainer.style.right = "20px";
+    topRightCornerContainer.style.display = "flex";
+    topRightCornerContainer.style.flexDirection = "column";
+    topRightCornerContainer.style.gap = "10px"; // Space between rows
+
+    // Create div for the trainer image (100x100)
+    const trainerDiv = document.createElement("div");
+    trainerDiv.style.display = "flex";
+    trainerDiv.style.justifyContent = "center";
+    const trainerImageElement = document.createElement("img");
+    trainerImageElement.src = selectedTrainerImage;
+    trainerImageElement.alt = "Selected Trainer";
+    trainerImageElement.style.width = "100px";
+    trainerImageElement.style.height = "100px";
+    trainerDiv.appendChild(trainerImageElement);
+
+    // Create div for the Pokémon images (2 rows)
+    const pokemonDiv = document.createElement("div");
+    pokemonDiv.style.display = "flex";
+    pokemonDiv.style.flexDirection = "column";
+    pokemonDiv.style.gap = "10px"; // Space between rows
+
+    // Extract Pokémon images from the final team div
+    const pokemonImages = Array.from(finalTeamDiv.querySelectorAll("img")).map(
+      (img) => img.src
+    );
+
+    // Ensure there are exactly 6 Pokémon images
+    if (pokemonImages.length === 6) {
+      // Create two rows of Pokémon images
+      const row1 = document.createElement("div");
+      row1.style.display = "flex";
+      row1.style.justifyContent = "space-between"; // Distribute images evenly
+      const row2 = document.createElement("div");
+      row2.style.display = "flex";
+      row2.style.justifyContent = "space-between"; // Distribute images evenly
+
+      // Add the first 3 Pokémon images to the first row
+      for (let i = 0; i < 3; i++) {
+        const pokemonImageElement = document.createElement("img");
+        pokemonImageElement.src = pokemonImages[i];
+        pokemonImageElement.alt = "Pokemon";
+        pokemonImageElement.style.width = "50px";
+        pokemonImageElement.style.height = "50px";
+        row1.appendChild(pokemonImageElement);
+      }
+
+      // Add the remaining 3 Pokémon images to the second row
+      for (let i = 3; i < 6; i++) {
+        const pokemonImageElement = document.createElement("img");
+        pokemonImageElement.src = pokemonImages[i];
+        pokemonImageElement.alt = "Pokemon";
+        pokemonImageElement.style.width = "50px";
+        pokemonImageElement.style.height = "50px";
+        row2.appendChild(pokemonImageElement);
+      }
+
+      // Append the rows to the Pokémon div
+      pokemonDiv.appendChild(row1);
+      pokemonDiv.appendChild(row2);
+    }
+
+    // Append trainer and Pokémon divs to the container
+    topRightCornerContainer.appendChild(trainerDiv);
+    topRightCornerContainer.appendChild(pokemonDiv);
+
+    // Append the container to the body
+    document.body.appendChild(topRightCornerContainer);
+  });
 });

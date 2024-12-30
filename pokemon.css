@@ -696,20 +696,19 @@ button:hover {
   }
 }
 
-/* Initially hide the customizer */
 #customizer {
-  display: none; /* Initially hidden */
+  display: none;
   text-align: center;
-  margin-top: 30px; /* Adjust the margin to be 30px below final team */
+  margin-top: 30px;
   margin-bottom: 20px;
   padding-top: 10px;
 }
 
 #trainer-customizer {
-  display: flex; /* Use flexbox to align items horizontally */
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
-  gap: 20px; /* Space between the image and arrows */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   position: relative;
 }
 

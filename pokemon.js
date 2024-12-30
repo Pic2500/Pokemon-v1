@@ -88,7 +88,7 @@ async function populateMoveTypeMap() {
       moveTypeMap[moveType].push(move.name);
     }
   } catch (error) {
-    console.error("Error Dohvacanjem podataka poteza: ", error);
+    console.error("Error Not reaching moves: ", error);
   }
 }
 
@@ -271,7 +271,6 @@ document
     const trainerGrad = document.getElementById("trainerGrad").value;
     const selectedPokemon = await getPokemonNames();
 
-    // Hide all Pokémon input items
     for (let i = 1; i <= 6; i++) {
       const pokemonItemDiv = document.getElementById(`pokemonItem${i}`);
       if (pokemonItemDiv) {
@@ -279,22 +278,19 @@ document
       }
     }
 
-    // Hide confirmation div and coach section
     const confirmationDiv = document.getElementById("confirmation");
     confirmationDiv.classList.add("hidden");
 
     const coachDiv = document.querySelector(".Coach");
     if (coachDiv) {
-      coachDiv.style.display = "none"; // Hide the Coach section
+      coachDiv.style.display = "none";
     }
 
-    // Update title
     const title = document.querySelector("h1");
     if (title) {
       title.textContent = "Your Adventure Begins!";
     }
 
-    // Clear and update final team div
     const finalTeamDiv = document.getElementById("finalTeam");
     finalTeamDiv.classList.remove("hidden");
     finalTeamDiv.innerHTML = `
@@ -302,7 +298,6 @@ document
     
   `;
 
-    // Append Pokémon images and names
     for (const pokemon of selectedPokemon) {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${pokemon}`
@@ -318,15 +313,13 @@ document
     `;
     }
 
-    // Insert final team div immediately after the title
     title.insertAdjacentElement("afterend", finalTeamDiv);
 
-    // Show the customizer below the final team div
     const customizerDiv = document.getElementById("customizer");
     if (customizerDiv) {
       console.log("Revealing customizer.");
-      customizerDiv.classList.remove("hidden"); // Ensure the customizer is shown
-      customizerDiv.style.display = "block"; // Ensure it's visible in the layout
+      customizerDiv.classList.remove("hidden");
+      customizerDiv.style.display = "block";
     } else {
       console.log("Customizer div not found.");
     }
@@ -337,12 +330,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const trainerIcon = document.getElementById("trainer-icon");
   const leftArrow = document.getElementById("left-arrow");
   const rightArrow = document.getElementById("right-arrow");
-  const selectTrainerButton = document.getElementById("select-trainer"); // Select button
-  const title = document.querySelector("h1"); // Title element
-  const finalTeamDiv = document.getElementById("finalTeam"); // Final Team section
-  const confirmationDiv = document.getElementById("confirmation"); // Confirmation section
-  const customizerDiv = document.getElementById("customizer"); // Customization section
-
+  const selectTrainerButton = document.getElementById("select-trainer");
+  const title = document.querySelector("h1");
+  const finalTeamDiv = document.getElementById("finalTeam");
+  const confirmationDiv = document.getElementById("confirmation");
+  const customizerDiv = document.getElementById("customizer");
   let currentTrainer = 0;
 
   const trainers = [
@@ -361,16 +353,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "Pokemonimages/assets/trainers/trainer13.png",
   ];
 
-  // Set initial trainer image
   trainerIcon.src = trainers[currentTrainer];
 
-  // Update arrow states
   function updateArrowState() {
     leftArrow.disabled = currentTrainer === 0;
     rightArrow.disabled = currentTrainer === trainers.length - 1;
   }
 
-  // Left arrow functionality
   leftArrow.addEventListener("click", () => {
     if (currentTrainer > 0) {
       currentTrainer--;
@@ -379,7 +368,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Right arrow functionality
   rightArrow.addEventListener("click", () => {
     if (currentTrainer < trainers.length - 1) {
       currentTrainer++;
@@ -388,34 +376,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initialize arrow states
   updateArrowState();
 
-  // Handle trainer selection
   selectTrainerButton.addEventListener("click", () => {
     const selectedTrainerImage = trainers[currentTrainer];
 
-    // Lock the selected trainer
     trainerIcon.src = selectedTrainerImage;
 
-    // Hide final team, confirmation, and customizer sections
     finalTeamDiv.style.display = "none";
     confirmationDiv.classList.add("hidden");
-    customizerDiv.style.display = "none"; // Hide the customization section
+    customizerDiv.style.display = "none";
 
-    // Update the title to "Beginning"
     title.textContent = "Beginning";
 
-    // Create container for top-right corner images
     const topRightCornerContainer = document.createElement("div");
     topRightCornerContainer.style.position = "absolute";
     topRightCornerContainer.style.top = "20px";
     topRightCornerContainer.style.right = "20px";
     topRightCornerContainer.style.display = "flex";
     topRightCornerContainer.style.flexDirection = "column";
-    topRightCornerContainer.style.gap = "10px"; // Space between rows
+    topRightCornerContainer.style.gap = "10px";
 
-    // Create div for the trainer image (100x100)
     const trainerDiv = document.createElement("div");
     trainerDiv.style.display = "flex";
     trainerDiv.style.justifyContent = "center";
@@ -426,28 +407,23 @@ document.addEventListener("DOMContentLoaded", () => {
     trainerImageElement.style.height = "100px";
     trainerDiv.appendChild(trainerImageElement);
 
-    // Create div for the Pokémon images (2 rows)
     const pokemonDiv = document.createElement("div");
     pokemonDiv.style.display = "flex";
     pokemonDiv.style.flexDirection = "column";
-    pokemonDiv.style.gap = "10px"; // Space between rows
+    pokemonDiv.style.gap = "10px";
 
-    // Extract Pokémon images from the final team div
     const pokemonImages = Array.from(finalTeamDiv.querySelectorAll("img")).map(
       (img) => img.src
     );
 
-    // Ensure there are exactly 6 Pokémon images
     if (pokemonImages.length === 6) {
-      // Create two rows of Pokémon images
       const row1 = document.createElement("div");
       row1.style.display = "flex";
-      row1.style.justifyContent = "space-between"; // Distribute images evenly
+      row1.style.justifyContent = "space-between";
       const row2 = document.createElement("div");
       row2.style.display = "flex";
-      row2.style.justifyContent = "space-between"; // Distribute images evenly
+      row2.style.justifyContent = "space-between";
 
-      // Add the first 3 Pokémon images to the first row
       for (let i = 0; i < 3; i++) {
         const pokemonImageElement = document.createElement("img");
         pokemonImageElement.src = pokemonImages[i];
@@ -457,7 +433,6 @@ document.addEventListener("DOMContentLoaded", () => {
         row1.appendChild(pokemonImageElement);
       }
 
-      // Add the remaining 3 Pokémon images to the second row
       for (let i = 3; i < 6; i++) {
         const pokemonImageElement = document.createElement("img");
         pokemonImageElement.src = pokemonImages[i];
@@ -467,16 +442,13 @@ document.addEventListener("DOMContentLoaded", () => {
         row2.appendChild(pokemonImageElement);
       }
 
-      // Append the rows to the Pokémon div
       pokemonDiv.appendChild(row1);
       pokemonDiv.appendChild(row2);
     }
 
-    // Append trainer and Pokémon divs to the container
     topRightCornerContainer.appendChild(trainerDiv);
     topRightCornerContainer.appendChild(pokemonDiv);
 
-    // Append the container to the body
     document.body.appendChild(topRightCornerContainer);
   });
 });

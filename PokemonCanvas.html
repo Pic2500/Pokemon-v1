@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon Canvas</title>
     <link rel="stylesheet" href="./PokemonCanvas.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div style="display: inline-block; position: relative">
@@ -21,30 +25,44 @@
           pointer-events: none;
         "
       ></div>
-      <canvas></canvas>
+    </div>
+    <canvas></canvas>
 
+    <div
+      style="
+        background-color: white;
+        height: 140px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-top: 4px black solid;
+        display: flex;
+      "
+    >
       <div
         style="
-          background-color: white;
-          height: 140px;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          border-top: 4px black solid;
-          display: flex;
-
+          width: 66.6%;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
         "
       >
-    <div style ="width: 66.6%;">
         <button>Attack1</button>
         <button>Attack2</button>
         <button>Attack3</button>
         <button>Attack4</button>
-    </div>
-    <div>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 33.3%;
+          border-left: 4px black solid;
+        "
+      >
         <h1>Attack Type</h1>
-    </div>
+      </div>
     </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"

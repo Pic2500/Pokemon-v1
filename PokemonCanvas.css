@@ -1,7 +1,18 @@
 body {
   background-color: black;
+  font-family: "Press Start 2P", monospace;
 }
 
 h1 {
   margin: 0;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  font-family: "Press Start 2P", monospace;
+}
+
+button:hover {
+  background-color: #ddd;
 }

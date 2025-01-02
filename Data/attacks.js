@@ -6,7 +6,7 @@ const attacks = {
   },
   Fireball: {
     name: "Fireball",
-    damage: 35,
+    damage: 25,
     type: "Fire",
   },
   Scratch: {
@@ -18,5 +18,20 @@ const attacks = {
     name: "FireRay",
     damage: 20,
     type: "Fire",
+  },
+  FireSlam: {
+    name: "FireSlam",
+    damage: 35,
+    type: "Fire",
+  },
+  Fly: {
+    name: "Fly",
+    damage: 35,
+    type: "Flying",
+  },
+  BodySlam: {
+    name: "BodySlam",
+    damage: 30,
+    type: "Normal",
   },
 };

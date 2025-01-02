@@ -51,8 +51,6 @@ battleZonesMap.forEach((row, i) => {
   });
 });
 
-console.log(battleZones);
-
 const image = new Image();
 image.src = "./Pokemonimages/assets/Maping/PokemonStyleMap.png";
 
@@ -326,72 +324,6 @@ function animate() {
   }
 }
 //animate();
-
-const battleBackgroundImage = new Image();
-battleBackgroundImage.src =
-  "./Pokemonimages/assets/Maping/Battles/battleBackground.png";
-const battleBackground = new Sprite({
-  position: {
-    x: 0,
-    y: 0,
-  },
-  image: battleBackgroundImage,
-});
-
-const draggleImage = new Image();
-draggleImage.src = "./Pokemonimages/assets/Maping/Battles/draggleSprite.png";
-const draggle = new Sprite({
-  position: {
-    x: 800,
-    y: 100,
-  },
-  image: draggleImage,
-  frames: {
-    max: 4,
-    hold: 30,
-  },
-  animate: true,
-  isEnemy: true,
-});
-
-const embyImage = new Image();
-embyImage.src = "./Pokemonimages/assets/Maping/Battles/embySprite.png";
-const emby = new Sprite({
-  position: {
-    x: 280,
-    y: 325,
-  },
-  image: embyImage,
-  frames: {
-    max: 4,
-    hold: 30,
-  },
-  animate: true,
-});
-
-const renderedSprites = [draggle, emby];
-function animateBattle() {
-  window.requestAnimationFrame(animateBattle);
-  battleBackground.draw();
-
-  renderedSprites.forEach((sprite) => {
-    sprite.draw();
-  });
-}
-//animate();
-animateBattle();
-
-//event listeners za napade
-document.querySelectorAll("button").forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const selectedAttack = attacks[e.currentTarget.innerHTML];
-    emby.attack({
-      attack: selectedAttack,
-      recipient: draggle,
-      renderedSprites,
-    });
-  });
-});
 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {

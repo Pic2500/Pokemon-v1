@@ -6,7 +6,6 @@ class Sprite {
     frames = { max: 1, hold: 10 },
     sprites,
     animate = false,
-    isEnemy = false,
     rotation = 0,
   }) {
     this.position = position;
@@ -20,8 +19,6 @@ class Sprite {
     this.animate = animate;
     this.sprites = sprites;
     this.opacity = 1;
-    this.health = 100;
-    this.isEnemy = isEnemy;
     this.rotation = this.rotation;
   }
 
@@ -61,8 +58,39 @@ class Sprite {
       else this.frames.val = 0;
     }
   }
+}
 
+class Monster extends Sprite {
+  constructor({
+    position,
+    velocity,
+    image,
+    frames = { max: 1, hold: 10 },
+    sprites,
+    animate = false,
+    rotation = 0,
+    isEnemy = false,
+    name,
+    attacks,
+  }) {
+    super({
+      position,
+      velocity,
+      image,
+      frames,
+      sprites,
+      animate,
+      rotation,
+    });
+    this.name = name;
+    this.isEnemy = isEnemy;
+    this.health = 100;
+    this.attacks = attacks;
+  }
   attack({ attack, recipient, renderedSprites }) {
+    document.querySelector("#dialogueBox").style.display = "block";
+    document.querySelector("#dialogueBox").innerHTML =
+      this.name + " used " + attack.name;
     let healthBar = "#enemyHealthBar";
     if (this.isEnemy) healthBar = "#playerHealthBar";
 
@@ -70,6 +98,8 @@ class Sprite {
     if (this.isEnemy) rotation = -2.2;
 
     this.health -= attack.damage;
+    const tl = gsap.timeline();
+    let movementDistance = 20;
 
     switch (attack.name) {
       case "Fireball":
@@ -120,9 +150,6 @@ class Sprite {
         break;
 
       case "Tackle":
-        const tl = gsap.timeline();
-
-        let movementDistance = 20;
         if (this.isEnemy) movementDistance = -20;
 
         tl.to(this.position, {

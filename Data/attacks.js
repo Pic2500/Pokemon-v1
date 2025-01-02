@@ -3,35 +3,12 @@ const attacks = {
     name: "Tackle",
     damage: 10,
     type: "Normal",
+    color: "black",
   },
   Fireball: {
     name: "Fireball",
-    damage: 25,
+    damage: 100,
     type: "Fire",
-  },
-  Scratch: {
-    name: "Scratch",
-    damage: 0,
-    type: "Normal",
-  },
-  FireRay: {
-    name: "FireRay",
-    damage: 20,
-    type: "Fire",
-  },
-  FireSlam: {
-    name: "FireSlam",
-    damage: 35,
-    type: "Fire",
-  },
-  Fly: {
-    name: "Fly",
-    damage: 35,
-    type: "Flying",
-  },
-  BodySlam: {
-    name: "BodySlam",
-    damage: 30,
-    type: "Normal",
+    color: "red",
   },
 };

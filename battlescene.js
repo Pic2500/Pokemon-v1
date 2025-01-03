@@ -12,9 +12,8 @@ const battleBackground = new Sprite({
 let draggle;
 let emby;
 let renderedSprites;
-let queue = [];
-
 let battleanimationId;
+let queue = [];
 
 function initBattle() {
   document.querySelector("#userInterface").style.display = "block";
@@ -59,6 +58,7 @@ function initBattle() {
                 opacity: 0,
               });
               battle.initiated = false;
+              audio.Map.play();
             },
           });
         });
@@ -90,6 +90,7 @@ function initBattle() {
                   opacity: 0,
                 });
                 battle.initiated = false;
+                audio.Map.play();
               },
             });
           });
@@ -113,9 +114,10 @@ function animateBattle() {
     sprite.draw();
   });
 }
-//animate();
-initBattle();
-animateBattle();
+
+animate();
+// initBattle();
+// animateBattle();
 
 document.querySelector("#dialogueBox").addEventListener("click", (e) => {
   if (queue.length > 0) {

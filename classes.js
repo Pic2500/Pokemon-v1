@@ -11,11 +11,13 @@ class Sprite {
     this.position = position;
     this.image = new Image();
     this.frames = { ...frames, val: 0, elapsed: 0 };
+
     this.image.onload = () => {
       this.width = this.image.width / this.frames.max;
       this.height = this.image.height;
     };
     this.image.src = image.src;
+
     this.animate = animate;
     this.sprites = sprites;
     this.opacity = 1;
@@ -96,6 +98,8 @@ class Monster extends Sprite {
     gsap.to(this, {
       opacity: 0,
     });
+    audio.battle.stop();
+    audio.victory.play();
   }
 
   attack({ attack, recipient, renderedSprites }) {
@@ -115,6 +119,7 @@ class Monster extends Sprite {
 
     switch (attack.name) {
       case "Fireball":
+        audio.initFireball.play();
         const fireballImage = new Image();
         fireballImage.src =
           "./Pokemonimages/assets/Maping/Battles/fireball.png";
@@ -139,6 +144,8 @@ class Monster extends Sprite {
           y: recipient.position.y,
           onComplete: () => {
             //Damage  done
+
+            audio.fireballHit.play();
             gsap.to(healthBar, {
               width: recipient.health + "%",
             });
@@ -172,6 +179,7 @@ class Monster extends Sprite {
             duration: 0.1,
             onComplete: () => {
               //Damage  done
+              audio.tackleHit.play();
               gsap.to(healthBar, {
                 width: recipient.health + "%",
               });
@@ -207,7 +215,7 @@ class Boundary {
   }
 
   draw() {
-    c.fillStyle = "rgba(255,0 ,0 ,0.5)";
+    c.fillStyle = "rgba(255,0 ,0 ,0)";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }

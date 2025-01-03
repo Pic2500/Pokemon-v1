@@ -72,15 +72,15 @@ playerRightImage.src = "./Pokemonimages/assets/Maping/playerRight.png";
 image.onload = () => {
   c.drawImage(image, -450, -300);
   c.drawImage(
-    playerImage,
+    playerDownImage,
     0,
     0,
-    playerImage.width / 4,
-    playerImage.height,
-    canvas.width / 2 - playerImage.width / 4 / 2,
-    canvas.height / 2 - playerImage.height / 2,
-    playerImage.width / 4,
-    playerImage.height
+    playerDownImage.width / 4,
+    playerDownImage.height,
+    canvas.width / 2 - playerDownImage.width / 4 / 2,
+    canvas.height / 2 - playerDownImage.height / 2,
+    playerDownImage.width / 4,
+    playerDownImage.height
   );
 };
 
@@ -102,7 +102,6 @@ const player = new Sprite({
   },
 });
 
-console.log(player);
 const background = new Sprite({
   position: {
     x: offset.x,
@@ -163,7 +162,6 @@ function animate() {
   let moving = true;
   player.animate = false;
 
-  console.log(animationId);
   if (battle.initiated) return;
   // activate a battle
   if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
@@ -188,10 +186,13 @@ function animate() {
         overlappingArea > (player.width * player.height) / 2 &&
         Math.random() < 0.01
       ) {
-        console.log("activate battle");
         // deactivate current animation loop
 
         window.cancelAnimationFrame(animationId);
+
+        audio.Map.stop();
+        audio.initBattle.play();
+        audio.battle.play();
 
         battle.initiated = true;
         gsap.to("#overlappingDiv", {
@@ -362,5 +363,12 @@ window.addEventListener("keyup", (e) => {
     case "d":
       keys.d.pressed = false;
       break;
+  }
+});
+let clicked = false;
+addEventListener("click", () => {
+  if (!clicked) {
+    audio.Map.play();
+    clicked = true;
   }
 });

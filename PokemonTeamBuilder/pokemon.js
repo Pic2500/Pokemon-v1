@@ -338,19 +338,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentTrainer = 0;
 
   const trainers = [
-    "Pokemonimages/assets/trainers/trainer1.png",
-    "Pokemonimages/assets/trainers/trainer2.png",
-    "Pokemonimages/assets/trainers/trainer3.png",
-    "Pokemonimages/assets/trainers/trainer4.png",
-    "Pokemonimages/assets/trainers/trainer5.png",
-    "Pokemonimages/assets/trainers/trainer6.png",
-    "Pokemonimages/assets/trainers/trainer7.png",
-    "Pokemonimages/assets/trainers/trainer8.png",
-    "Pokemonimages/assets/trainers/trainer9.png",
-    "Pokemonimages/assets/trainers/trainer10.png",
-    "Pokemonimages/assets/trainers/trainer11.png",
-    "Pokemonimages/assets/trainers/trainer12.png",
-    "Pokemonimages/assets/trainers/trainer13.png",
+    "../Pokemonimages/assets/trainers/trainer1.png",
+    "../Pokemonimages/assets/trainers/trainer2.png",
+    "../Pokemonimages/assets/trainers/trainer3.png",
+    "../Pokemonimages/assets/trainers/trainer4.png",
+    "../Pokemonimages/assets/trainers/trainer5.png",
+    "../Pokemonimages/assets/trainers/trainer6.png",
+    "../Pokemonimages/assets/trainers/trainer7.png",
+    "../Pokemonimages/assets/trainers/trainer8.png",
+    "../Pokemonimages/assets/trainers/trainer9.png",
+    "../Pokemonimages/assets/trainers/trainer10.png",
+    "../Pokemonimages/assets/trainers/trainer11.png",
+    "../Pokemonimages/assets/trainers/trainer12.png",
+    "../Pokemonimages/assets/trainers/trainer13.png",
   ];
 
   trainerIcon.src = trainers[currentTrainer];

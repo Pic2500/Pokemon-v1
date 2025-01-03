@@ -1,16 +1,12 @@
-const embyImage = new Image();
-embyImage.src = "./Pokemonimages/assets/Maping/Battles/embySprite.png";
-
-const draggleImage = new Image();
-draggleImage.src = "./Pokemonimages/assets/Maping/Battles/draggleSprite.png";
-
 const monster = {
   Emby: {
     position: {
       x: 280,
       y: 325,
     },
-    image: embyImage,
+    image: {
+      src: "./Pokemonimages/assets/Maping/Battles/embySprite.png",
+    },
     frames: {
       max: 4,
       hold: 30,
@@ -24,7 +20,9 @@ const monster = {
       x: 800,
       y: 100,
     },
-    image: draggleImage,
+    image: {
+      src: "./Pokemonimages/assets/Maping/Battles/draggleSprite.png",
+    },
     frames: {
       max: 4,
       hold: 30,

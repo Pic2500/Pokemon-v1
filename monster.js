@@ -1,35 +1,77 @@
 const monster = {
-  Emby: {
+  Charmander: {
     position: {
-      x: 280,
-      y: 325,
+      x: 250,
+      y: 280,
     },
     image: {
-      src: "./Pokemonimages/assets/Maping/Battles/embySprite.png",
-    },
-    frames: {
-      max: 4,
-      hold: 30,
+      src: "./Pokemonimages/Monsters/CharmanderBack.png",
     },
     animate: true,
-    name: "Emby",
+    name: "Charmander",
     attacks: [attacks.Tackle, attacks.Fireball],
   },
-  Draggle: {
+
+  Bulbasaur: {
     position: {
-      x: 800,
-      y: 100,
+      x: 740,
+      y: 80,
     },
     image: {
-      src: "./Pokemonimages/assets/Maping/Battles/draggleSprite.png",
+      src: "./Pokemonimages/Monsters/bulbasaurBack.png",
     },
-    frames: {
-      max: 4,
-      hold: 30,
+    animate: true,
+    name: "Bulbasaur",
+    attacks: [attacks.Tackle, attacks.Vinewhip],
+  },
+
+  Squirtle: {
+    name: "Squirtle",
+    image: "./Pokemonimages/Monsters/SquirtleBack.png",
+    animate: true,
+    attacks: [attacks.Tackle, attacks.WaterGun],
+  },
+};
+
+const monsterEnemy = {
+  Charmander: {
+    position: {
+      x: 740,
+      y: 80,
+    },
+    image: {
+      src: "./Pokemonimages/Monsters/CharmanderFront.png",
+    },
+
+    animate: true,
+    isEnemy: true,
+    name: "Charmander",
+    attacks: [attacks.Tackle, attacks.Fireball],
+  },
+  Bulbasaur: {
+    position: {
+      x: 740,
+      y: 80,
+    },
+    image: {
+      src: "./Pokemonimages/Monsters/bulbasaurFront.png",
     },
     animate: true,
     isEnemy: true,
-    name: "Draggle",
-    attacks: [attacks.Tackle, attacks.Fireball],
+    name: "Bulbasaur",
+    attacks: [attacks.Tackle, attacks.Vinewhip],
+  },
+  Squirtle: {
+    position: {
+      x: 740,
+      y: 80,
+    },
+    image: {
+      src: "./Pokemonimages/Monsters/SquirtleFront.png",
+    },
+    name: "Squirtle",
+    animate: true,
+    isEnemy: true,
+    attacks: [attacks.Tackle, attacks.WaterGun],
   },
 };

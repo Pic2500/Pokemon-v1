@@ -9,8 +9,14 @@ const battleBackground = new Sprite({
   image: battleBackgroundImage,
 });
 
-let draggle;
-let emby;
+function getRandomEnemy() {
+  const enemyKeys = Object.keys(monsterEnemy);
+  const randomKey = enemyKeys[Math.floor(Math.random() * enemyKeys.length)];
+  return monsterEnemy[randomKey];
+}
+
+let playerPokemon;
+let enemyPokemon;
 let renderedSprites;
 let battleanimationId;
 let queue = [];
@@ -22,12 +28,17 @@ function initBattle() {
   document.querySelector("#playerHealthBar").style.width = "100%";
   document.querySelector("#attacksBox").replaceChildren();
 
-  draggle = new Monster(monster.Draggle);
-  emby = new Monster(monster.Emby);
-  renderedSprites = [draggle, emby];
+  playerPokemon = new Monster(monster.Charmander);
+  document.querySelector("#playerName").textContent = playerPokemon.name;
+
+  const enemyData = getRandomEnemy();
+  enemyPokemon = new Monster(enemyData);
+  document.querySelector("#enemyName").textContent = enemyPokemon.name;
+
+  renderedSprites = [playerPokemon, enemyPokemon];
   queue = [];
 
-  emby.attacks.forEach((attack) => {
+  playerPokemon.attacks.forEach((attack) => {
     const button = document.createElement("button");
     button.innerHTML = attack.name;
     document.querySelector("#attacksBox").append(button);
@@ -36,15 +47,15 @@ function initBattle() {
   document.querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", (e) => {
       const selectedAttack = attacks[e.currentTarget.innerHTML];
-      emby.attack({
+      playerPokemon.attack({
         attack: selectedAttack,
-        recipient: draggle,
+        recipient: enemyPokemon,
         renderedSprites,
       });
 
-      if (draggle.health <= 0) {
+      if (enemyPokemon.health <= 0) {
         queue.push(() => {
-          draggle.faint();
+          enemyPokemon.faint();
         });
         queue.push(() => {
           //fade back to black
@@ -65,17 +76,19 @@ function initBattle() {
       }
 
       const radnomAttack =
-        draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)];
+        enemyPokemon.attacks[
+          Math.floor(Math.random() * enemyPokemon.attacks.length)
+        ];
 
       queue.push(() => {
-        draggle.attack({
+        enemyPokemon.attack({
           attack: radnomAttack,
-          recipient: emby,
+          recipient: playerPokemon,
           renderedSprites,
         });
-        if (emby.health <= 0) {
+        if (playerPokemon.health <= 0) {
           queue.push(() => {
-            emby.faint();
+            playerPokemon.faint();
           });
           queue.push(() => {
             //fade back to black

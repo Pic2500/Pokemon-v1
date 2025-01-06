@@ -11,4 +11,16 @@ const attacks = {
     type: "Fire",
     color: "red",
   },
+  WaterGun: {
+    name: "WaterGun",
+    damage: 25,
+    type: "Water",
+    color: "blue",
+  },
+  Vinewhip: {
+    name: "Vinewhip",
+    damage: 25,
+    type: "Grass",
+    color: "green",
+  },
 };

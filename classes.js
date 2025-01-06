@@ -201,6 +201,77 @@ class Monster extends Sprite {
           .to(this.position, {
             x: this.position.x,
           });
+        break;
+
+      case "WaterGun":
+        if (this.isEnemy) movementDistance = -20;
+
+        tl.to(this.position, {
+          x: this.position.x - movementDistance,
+        })
+          .to(this.position, {
+            x: this.position.x + movementDistance * 2,
+            duration: 0.1,
+            onComplete: () => {
+              //Damage  done
+              audio.tackleHit.play();
+              gsap.to(healthBar, {
+                width: recipient.health + "%",
+              });
+              gsap.to(recipient.position, {
+                x: recipient.position.x + 10,
+                yoyo: true,
+                repeat: 5,
+                duration: 0.08,
+              });
+
+              gsap.to(recipient, {
+                opacity: 0,
+                repeat: 5,
+                yoyo: true,
+                duration: 0.08,
+              });
+            },
+          })
+          .to(this.position, {
+            x: this.position.x,
+          });
+
+        break;
+
+      case "Vinewhip":
+        if (this.isEnemy) movementDistance = -20;
+
+        tl.to(this.position, {
+          x: this.position.x - movementDistance,
+        })
+          .to(this.position, {
+            x: this.position.x + movementDistance * 2,
+            duration: 0.1,
+            onComplete: () => {
+              //Damage  done
+              audio.tackleHit.play();
+              gsap.to(healthBar, {
+                width: recipient.health + "%",
+              });
+              gsap.to(recipient.position, {
+                x: recipient.position.x + 10,
+                yoyo: true,
+                repeat: 5,
+                duration: 0.08,
+              });
+
+              gsap.to(recipient, {
+                opacity: 0,
+                repeat: 5,
+                yoyo: true,
+                duration: 0.08,
+              });
+            },
+          })
+          .to(this.position, {
+            x: this.position.x,
+          });
     }
   }
 }

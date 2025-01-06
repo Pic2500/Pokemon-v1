@@ -74,6 +74,7 @@ class Monster extends Sprite {
     isEnemy = false,
     name,
     attacks,
+    level,
   }) {
     super({
       position,
@@ -88,6 +89,7 @@ class Monster extends Sprite {
     this.isEnemy = isEnemy;
     this.health = 100;
     this.attacks = attacks;
+    this.level = level;
   }
 
   faint() {

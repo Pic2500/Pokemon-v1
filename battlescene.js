@@ -8,6 +8,11 @@ const battleBackground = new Sprite({
   },
   image: battleBackgroundImage,
 });
+function getRandomMonster() {
+  const playerKeys = Object.keys(playermonster);
+  const randomKey = playerKeys[Math.floor(Math.random() * playerKeys.length)];
+  return playermonster[randomKey];
+}
 
 function getRandomEnemy() {
   const enemyKeys = Object.keys(monsterEnemy);
@@ -15,8 +20,7 @@ function getRandomEnemy() {
   return monsterEnemy[randomKey];
 }
 
-let playerPokemon;
-let enemyPokemon;
+let playerPokemon, enemyPokemon;
 let renderedSprites;
 let battleanimationId;
 let queue = [];
@@ -28,12 +32,19 @@ function initBattle() {
   document.querySelector("#playerHealthBar").style.width = "100%";
   document.querySelector("#attacksBox").replaceChildren();
 
-  playerPokemon = new Monster(monster.Charmander);
+  const playerData = getRandomMonster();
+  playerPokemon = new Monster(playerData);
   document.querySelector("#playerName").textContent = playerPokemon.name;
+  document.querySelector(
+    "#playerLevel"
+  ).textContent = `LVL: ${playerPokemon.level}`;
 
   const enemyData = getRandomEnemy();
   enemyPokemon = new Monster(enemyData);
   document.querySelector("#enemyName").textContent = enemyPokemon.name;
+  document.querySelector(
+    "#enemyLevel"
+  ).textContent = `LVL: ${enemyPokemon.level}`;
 
   renderedSprites = [playerPokemon, enemyPokemon];
   queue = [];
@@ -127,10 +138,11 @@ function animateBattle() {
     sprite.draw();
   });
 }
+console.log(playerPokemon);
 
-animate();
-// initBattle();
-// animateBattle();
+//animate();
+initBattle();
+animateBattle();
 
 document.querySelector("#dialogueBox").addEventListener("click", (e) => {
   if (queue.length > 0) {

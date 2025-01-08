@@ -366,9 +366,17 @@ window.addEventListener("keyup", (e) => {
   }
 });
 let clicked = false;
-addEventListener("click", () => {
+function playAudio() {
   if (!clicked) {
     audio.Map.play();
     clicked = true;
+  }
+}
+
+addEventListener("click", playAudio);
+
+addEventListener("keydown", (e) => {
+  if (["w", "a", "s", "d"].includes(e.key.toLowerCase())) {
+    playAudio();
   }
 });

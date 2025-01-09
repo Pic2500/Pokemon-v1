@@ -1,3 +1,101 @@
+let playerPokemon; // Deklarira se varijabla globalno
+function loadPlayerPokemon() {
+  const storedPlayerPokemon = localStorage.getItem("playerPokemon");
+  if (storedPlayerPokemon) {
+    const parsedData = JSON.parse(storedPlayerPokemon);
+    playerPokemon = new Monster(parsedData);
+  } else {
+    console.warn(
+      "No player Pokémon found in localStorage. Default Pokémon will be used."
+    );
+    playerPokemon = null;
+  }
+}
+
+loadPlayerPokemon();
+
+function createStarterSelection() {
+  const starterDiv = document.createElement("div");
+  starterDiv.id = "starterSelection";
+  starterDiv.style.position = "absolute";
+  starterDiv.style.top = "50%";
+  starterDiv.style.left = "50%";
+  starterDiv.style.transform = "translate(-50%, -50%)";
+  starterDiv.style.backgroundColor = "#fff";
+  starterDiv.style.padding = "20px";
+  starterDiv.style.border = "2px solid #000";
+  starterDiv.style.display = "flex";
+  starterDiv.style.flexDirection = "column";
+  starterDiv.style.alignItems = "center";
+
+  const title = document.createElement("h2");
+  title.innerText = "Select your starter Pokémon";
+  title.style.marginBottom = "20px";
+  starterDiv.appendChild(title);
+
+  const startersContainer = document.createElement("div");
+  startersContainer.style.display = "flex";
+  startersContainer.style.flexWrap = "wrap";
+  startersContainer.style.gap = "15px";
+  starterDiv.appendChild(startersContainer);
+
+  Object.keys(playermonster).forEach((key) => {
+    const pokemon = playermonster[key];
+
+    const pokemonContainer = document.createElement("div");
+    pokemonContainer.style.display = "flex";
+    pokemonContainer.style.flexDirection = "column";
+    pokemonContainer.style.alignItems = "center";
+    pokemonContainer.style.cursor = "pointer";
+    pokemonContainer.style.padding = "10px";
+    pokemonContainer.style.border = "1px solid #000";
+    pokemonContainer.style.borderRadius = "5px";
+    pokemonContainer.style.transition = "transform 0.2s";
+    pokemonContainer.onmouseover = () => {
+      pokemonContainer.style.transform = "scale(1.1)";
+    };
+    pokemonContainer.onmouseout = () => {
+      pokemonContainer.style.transform = "scale(1)";
+    };
+
+    const image = document.createElement("img");
+    image.src = pokemon.image.src;
+    image.alt = pokemon.name;
+    image.style.width = "80px";
+    image.style.height = "80px";
+    pokemonContainer.appendChild(image);
+
+    const name = document.createElement("p");
+    name.innerText = pokemon.name;
+    name.style.marginTop = "10px";
+    name.style.fontWeight = "bold";
+    pokemonContainer.appendChild(name);
+
+    pokemonContainer.addEventListener("click", () => {
+      selectStarter(pokemon);
+    });
+
+    startersContainer.appendChild(pokemonContainer);
+  });
+
+  document.body.appendChild(starterDiv);
+}
+
+function selectStarter(selectedPokemon) {
+  alert(`You selected ${selectedPokemon.name} as your starter!`);
+  const starterDiv = document.getElementById("starterSelection");
+  if (starterDiv) starterDiv.remove();
+
+  window.playerPokemon = selectedPokemon;
+
+  localStorage.setItem("playerPokemon", JSON.stringify(selectedPokemon));
+
+  console.log(selectedPokemon);
+  animate();
+}
+
+createStarterSelection();
+
 const canvas = document.querySelector("canvas");
 
 const c = canvas.getContext("2d");

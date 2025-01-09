@@ -6,6 +6,7 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/CharmanderBack.png",
+      src: "./Pokemonimages/Monsters/CharmanderFront.png",
     },
     animate: true,
     name: "Charmander",
@@ -20,10 +21,11 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/bulbasaurBack.png",
+      src: "./Pokemonimages/Monsters/bulbasaurFront.png",
     },
     animate: true,
     name: "Bulbasaur",
-    level: 7,
+    level: 5,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -34,10 +36,11 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/SquirtleBack.png",
+      src: "./Pokemonimages/Monsters/SquirtleFront.png",
     },
     animate: true,
     name: "Squirtle",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 
@@ -48,10 +51,11 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/chikoritaBack.png",
+      src: "./Pokemonimages/Monsters/chikoritaFront.png",
     },
     animate: true,
     name: "Chikorita",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -62,10 +66,11 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/cyndaquilBack.png",
+      src: "./Pokemonimages/Monsters/cyndaquilFront.png",
     },
     animate: true,
     name: "Cyndaquil",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.Fireball],
   },
 
@@ -76,10 +81,11 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/totodileBack.png",
+      src: "./Pokemonimages/Monsters/totodileFront.png",
     },
     animate: true,
     name: "Totodile",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 
@@ -90,10 +96,11 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/treeckoBack.png",
+      src: "./Pokemonimages/Monsters/treeckoFront.png",
     },
     animate: true,
     name: "Treecko",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -104,10 +111,11 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/torchicBack.png",
+      src: "./Pokemonimages/Monsters/torchicFront.png",
     },
     animate: true,
     name: "Torchic",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.Fireball],
   },
 
@@ -118,10 +126,11 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/mudkipBack.png",
+      src: "./Pokemonimages/Monsters/mudkipFront.png",
     },
     animate: true,
     name: "Mudkip",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 
@@ -132,38 +141,41 @@ const playermonster = {
     },
     image: {
       src: "./Pokemonimages/Monsters/turtwigBack.png",
+      src: "./Pokemonimages/Monsters/turtwigFront.png",
     },
     animate: true,
     name: "Turtwig",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
   Chimchar: {
     position: {
-      x: 280,
+      x: 250,
       y: 352,
     },
     image: {
       src: "./Pokemonimages/Monsters/chimcharBack.png",
+      src: "./Pokemonimages/Monsters/chimcharFront.png",
     },
     animate: true,
     name: "Chimchar",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
   Piplup: {
     position: {
-      x: 280,
+      x: 250,
       y: 352,
     },
     image: {
       src: "./Pokemonimages/Monsters/piplupBack.png",
+      src: "./Pokemonimages/Monsters/piplupFront.png",
     },
     animate: true,
     name: "Piplup",
-    level: 8,
+    level: 5,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 };

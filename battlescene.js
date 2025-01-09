@@ -8,10 +8,15 @@ const battleBackground = new Sprite({
   },
   image: battleBackgroundImage,
 });
-function getRandomMonster() {
-  const playerKeys = Object.keys(playermonster);
-  const randomKey = playerKeys[Math.floor(Math.random() * playerKeys.length)];
-  return playermonster[randomKey];
+
+const storedPlayerPokemon = JSON.parse(localStorage.getItem("playerPokemon"));
+
+if (storedPlayerPokemon) {
+  playerPokemon = new Monster(storedPlayerPokemon);
+} else {
+  console.error(
+    "No player Pokémon found in localStorage. Please select a starter Pokémon first."
+  );
 }
 
 function getRandomEnemy() {
@@ -20,20 +25,17 @@ function getRandomEnemy() {
   return monsterEnemy[randomKey];
 }
 
-let playerPokemon, enemyPokemon;
+let enemyPokemon;
 let renderedSprites;
 let battleanimationId;
 let queue = [];
 
 function initBattle() {
-  document.querySelector("#userInterface").style.display = "block";
-  document.querySelector("#dialogueBox").style.display = "none";
-  document.querySelector("#enemyHealthBar").style.width = "100%";
-  document.querySelector("#playerHealthBar").style.width = "100%";
-  document.querySelector("#attacksBox").replaceChildren();
+  if (!playerPokemon) {
+    console.error("Player Pokémon is not defined. Cannot start the battle.");
+    return;
+  }
 
-  const playerData = getRandomMonster();
-  playerPokemon = new Monster(playerData);
   document.querySelector("#playerName").textContent = playerPokemon.name;
   document.querySelector(
     "#playerLevel"
@@ -48,6 +50,12 @@ function initBattle() {
 
   renderedSprites = [playerPokemon, enemyPokemon];
   queue = [];
+
+  document.querySelector("#userInterface").style.display = "block";
+  document.querySelector("#dialogueBox").style.display = "none";
+  document.querySelector("#enemyHealthBar").style.width = "100%";
+  document.querySelector("#playerHealthBar").style.width = "100%";
+  document.querySelector("#attacksBox").replaceChildren();
 
   playerPokemon.attacks.forEach((attack) => {
     const button = document.createElement("button");

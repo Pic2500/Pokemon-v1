@@ -19,3 +19,10 @@ button {
 button:hover {
   background-color: #ddd;
 }
+
+#playerHealthBar,
+#enemyHealthBar {
+  height: 20px;
+  background-color: green;
+  transition: width 0.3s ease-in-out;
+}

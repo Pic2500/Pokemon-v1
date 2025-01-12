@@ -75,6 +75,7 @@ class Monster extends Sprite {
     name,
     attacks,
     level,
+    maxHealth,
   }) {
     super({
       position,
@@ -90,6 +91,34 @@ class Monster extends Sprite {
     this.health = 100;
     this.attacks = attacks;
     this.level = level;
+    this.maxHealth = maxHealth || 100;
+    this.health = this.maxHealth;
+  }
+
+  takeDamage(damage, healthBarSelector) {
+    // Decrease health and clamp it to 0
+    this.health = Math.max(0, this.health - damage);
+
+    // Update health bar
+    this.updateHealthBar(healthBarSelector);
+
+    // Log the updated health
+    console.log(
+      `${this.name} took ${damage} damage! HP: ${this.health}/${this.maxHealth}`
+    );
+  }
+
+  heal(amount, healthBarSelector) {
+    // Increase health and clamp it to maxHealth
+    this.health = Math.min(this.maxHealth, this.health + amount);
+
+    // Update health bar
+    this.updateHealthBar(healthBarSelector);
+
+    // Log the updated health
+    console.log(
+      `${this.name} healed ${amount}! HP: ${this.health}/${this.maxHealth}`
+    );
   }
 
   faint() {

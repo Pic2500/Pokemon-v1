@@ -1,25 +1,25 @@
 const attacks = {
   Tackle: {
     name: "Tackle",
-    damage: 10,
+    damage: 5,
     type: "Normal",
     color: "black",
   },
   Fireball: {
     name: "Fireball",
-    damage: 25,
+    damage: 10,
     type: "Fire",
     color: "red",
   },
   WaterGun: {
     name: "WaterGun",
-    damage: 25,
+    damage: 10,
     type: "Water",
     color: "blue",
   },
   Vinewhip: {
     name: "Vinewhip",
-    damage: 25,
+    damage: 10,
     type: "Grass",
     color: "green",
   },

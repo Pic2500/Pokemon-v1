@@ -11,6 +11,8 @@ const playermonster = {
     animate: true,
     name: "Charmander",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Fireball],
   },
 
@@ -26,6 +28,8 @@ const playermonster = {
     animate: true,
     name: "Bulbasaur",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -41,6 +45,8 @@ const playermonster = {
     animate: true,
     name: "Squirtle",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 
@@ -56,6 +62,8 @@ const playermonster = {
     animate: true,
     name: "Chikorita",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -71,6 +79,8 @@ const playermonster = {
     animate: true,
     name: "Cyndaquil",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Fireball],
   },
 
@@ -86,6 +96,8 @@ const playermonster = {
     animate: true,
     name: "Totodile",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 
@@ -101,6 +113,8 @@ const playermonster = {
     animate: true,
     name: "Treecko",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -116,6 +130,8 @@ const playermonster = {
     animate: true,
     name: "Torchic",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Fireball],
   },
 
@@ -131,6 +147,8 @@ const playermonster = {
     animate: true,
     name: "Mudkip",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 
@@ -146,6 +164,8 @@ const playermonster = {
     animate: true,
     name: "Turtwig",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -161,6 +181,8 @@ const playermonster = {
     animate: true,
     name: "Chimchar",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -176,6 +198,8 @@ const playermonster = {
     animate: true,
     name: "Piplup",
     level: 5,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 };
@@ -193,6 +217,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Charmander",
     level: 4,
+    health: 20,
+    maxHealth: 20,
     attacks: [attacks.Tackle, attacks.Fireball],
   },
   Bulbasaur: {
@@ -205,6 +231,8 @@ const monsterEnemy = {
     },
     name: "Bulbasaur",
     level: 3,
+    health: 19,
+    maxHealth: 19,
     animate: true,
     isEnemy: true,
 
@@ -220,6 +248,8 @@ const monsterEnemy = {
     },
     name: "Squirtle",
     level: 6,
+    health: 28,
+    maxHealth: 28,
     animate: true,
     isEnemy: true,
     attacks: [attacks.Tackle, attacks.WaterGun],
@@ -237,6 +267,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Chikorita",
     level: 8,
+    health: 34,
+    maxHealth: 34,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -252,6 +284,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Cyndaquil",
     level: 8,
+    health: 34,
+    maxHealth: 34,
     attacks: [attacks.Tackle, attacks.Fireball],
   },
 
@@ -267,6 +301,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Totodile",
     level: 8,
+    health: 26,
+    maxHealth: 26,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 
@@ -282,6 +318,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Treecko",
     level: 8,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -297,6 +335,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Torchic",
     level: 8,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Fireball],
   },
 
@@ -312,6 +352,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Mudkip",
     level: 8,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 
@@ -327,6 +369,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Turtwig",
     level: 8,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -342,6 +386,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Chimchar",
     level: 8,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.Vinewhip],
   },
 
@@ -357,6 +403,8 @@ const monsterEnemy = {
     isEnemy: true,
     name: "Piplup",
     level: 8,
+    health: 24,
+    maxHealth: 24,
     attacks: [attacks.Tackle, attacks.WaterGun],
   },
 };

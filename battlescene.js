@@ -7,22 +7,64 @@ const battleBackground = new Sprite({
     y: 0,
   },
   image: battleBackgroundImage,
+  animte: false,
 });
+
+battleBackgroundImage.onload = () => {
+  console.log("Battle background image loaded.");
+  //animateBattle(); // Start the battle animation after the background image is loaded
+};
 
 const storedPlayerPokemon = JSON.parse(localStorage.getItem("playerPokemon"));
 
 if (storedPlayerPokemon) {
   playerPokemon = new Monster(storedPlayerPokemon);
+  playerPokemon.health = playerPokemon.maxHealth || playerPokemon.maxHealth;
 } else {
   console.error(
     "No player Pokémon found in localStorage. Please select a starter Pokémon first."
   );
 }
 
+function resetPlayerPosition() {
+  gsap.killTweensOf(playerPokemon.position);
+  playerPokemon.position.x = 280;
+  playerPokemon.position.y = 350;
+}
+
 function getRandomEnemy() {
   const enemyKeys = Object.keys(monsterEnemy);
   const randomKey = enemyKeys[Math.floor(Math.random() * enemyKeys.length)];
-  return monsterEnemy[randomKey];
+  const enemyData = monsterEnemy[randomKey];
+  const enemy = new Monster(enemyData);
+  enemy.health = enemy.maxHealth;
+  return enemy;
+}
+
+function updateHealthBar(pokemon, healthBarSelector) {
+  const healthPercentage = (pokemon.health / pokemon.maxHealth) * 100;
+  const clampedPercentage = Math.max(0, Math.min(100, healthPercentage));
+
+  const healthBar = document.querySelector(healthBarSelector);
+
+  if (healthBar) {
+    healthBar.style.width = `${clampedPercentage}%`;
+  }
+
+  const healthDisplay = document.querySelector(
+    healthBarSelector === "#playerHealthBar"
+      ? "#playerHealthDisplay"
+      : "#enemyHealthDisplay"
+  );
+
+  if (healthDisplay) {
+    healthDisplay.textContent = `HP: ${pokemon.health}/${pokemon.maxHealth}`;
+  }
+  console.log(
+    `${pokemon.name} Health: ${pokemon.health}/${
+      pokemon.maxHealth
+    } (${clampedPercentage.toFixed(2)}%)`
+  );
 }
 
 let enemyPokemon;
@@ -31,10 +73,7 @@ let battleanimationId;
 let queue = [];
 
 function initBattle() {
-  if (!playerPokemon) {
-    console.error("Player Pokémon is not defined. Cannot start the battle.");
-    return;
-  }
+  resetPlayerPosition();
 
   document.querySelector("#playerName").textContent = playerPokemon.name;
   document.querySelector(
@@ -47,6 +86,7 @@ function initBattle() {
   document.querySelector(
     "#enemyLevel"
   ).textContent = `LVL: ${enemyPokemon.level}`;
+  enemyPokemon.health = enemyPokemon.maxHealth;
 
   renderedSprites = [playerPokemon, enemyPokemon];
   queue = [];
@@ -56,6 +96,15 @@ function initBattle() {
   document.querySelector("#enemyHealthBar").style.width = "100%";
   document.querySelector("#playerHealthBar").style.width = "100%";
   document.querySelector("#attacksBox").replaceChildren();
+  document.querySelector(
+    "#playerHealthDisplay"
+  ).textContent = `HP: ${playerPokemon.health}/${playerPokemon.maxHealth}`;
+  document.querySelector(
+    "#enemyHealthDisplay"
+  ).textContent = `HP: ${enemyPokemon.health}/${enemyPokemon.maxHealth}`;
+
+  updateHealthBar(playerPokemon, "#playerHealthBar");
+  updateHealthBar(enemyPokemon, "#enemyHealthBar");
 
   playerPokemon.attacks.forEach((attack) => {
     const button = document.createElement("button");
@@ -72,6 +121,16 @@ function initBattle() {
         renderedSprites,
       });
 
+      updateHealthBar(playerPokemon, "#playerHealthBar");
+      updateHealthBar(enemyPokemon, "#enemyHealthBar");
+
+      document.querySelector(
+        "#playerHealthDisplay"
+      ).textContent = `HP: ${playerPokemon.health}/${playerPokemon.maxHealth}`;
+      document.querySelector(
+        "#enemyHealthDisplay"
+      ).textContent = `HP: ${enemyPokemon.health}/${enemyPokemon.maxHealth}`;
+
       if (enemyPokemon.health <= 0) {
         queue.push(() => {
           enemyPokemon.faint();
@@ -81,6 +140,16 @@ function initBattle() {
           gsap.to("#overlappingDiv", {
             opacity: 1,
             onComplete: () => {
+              const playerData = JSON.parse(
+                localStorage.getItem("playerPokemon")
+              );
+              if (playerData) {
+                playerData.health = playerPokemon.health;
+                localStorage.setItem(
+                  "playerPokemon",
+                  JSON.stringify(playerData)
+                );
+              }
               cancelAnimationFrame(battleanimationId);
               animate();
               document.querySelector("#userInterface").style.display = "none";
@@ -88,6 +157,7 @@ function initBattle() {
                 opacity: 0,
               });
               battle.initiated = false;
+
               audio.Map.play();
             },
           });
@@ -105,6 +175,17 @@ function initBattle() {
           recipient: playerPokemon,
           renderedSprites,
         });
+
+        updateHealthBar(playerPokemon, "#playerHealthBar");
+        updateHealthBar(enemyPokemon, "#enemyHealthBar");
+
+        document.querySelector(
+          "#playerHealthDisplay"
+        ).textContent = `HP: ${playerPokemon.health}/${playerPokemon.maxHealth}`;
+        document.querySelector(
+          "#enemyHealthDisplay"
+        ).textContent = `HP: ${enemyPokemon.health}/${enemyPokemon.maxHealth}`;
+
         if (playerPokemon.health <= 0) {
           queue.push(() => {
             playerPokemon.faint();
@@ -122,6 +203,7 @@ function initBattle() {
                   opacity: 0,
                 });
                 battle.initiated = false;
+
                 audio.Map.play();
               },
             });
@@ -140,6 +222,9 @@ function initBattle() {
 
 function animateBattle() {
   battleanimationId = window.requestAnimationFrame(animateBattle);
+
+  c.clearRect(0, 0, canvas.width, canvas.height);
+
   battleBackground.draw();
 
   renderedSprites.forEach((sprite) => {
@@ -148,7 +233,6 @@ function animateBattle() {
 }
 console.log(playerPokemon);
 
-animate();
 // initBattle();
 // animateBattle();
 

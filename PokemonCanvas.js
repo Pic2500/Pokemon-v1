@@ -1,14 +1,28 @@
 let playerPokemon;
+
+// Load player Pokémon from localStorage (if exists)
 function loadPlayerPokemon() {
   const storedPlayerPokemon = localStorage.getItem("playerPokemon");
   if (storedPlayerPokemon) {
     const parsedData = JSON.parse(storedPlayerPokemon);
-    playerPokemon = new Monster(parsedData);
+    playerPokemon = new Monster(parsedData); // Assuming Monster class is defined elsewhere
     return true;
   }
   return false;
 }
 
+// Initialize the game and ask if the user wants to continue or start a new game
+function initGame() {
+  if (loadPlayerPokemon()) {
+    // If player has a saved Pokémon, ask whether to continue or start a new game
+    askToContinue();
+  } else {
+    // If no Pokémon is saved, proceed directly to starter selection
+    createStarterSelection();
+  }
+}
+
+// Ask the user whether to continue with their previous Pokémon or start a new game
 function askToContinue() {
   if (document.getElementById("confirmationDiv")) {
     console.log("It already exists.");
@@ -43,17 +57,19 @@ function askToContinue() {
     playerPokemon = new Monster(parsedData);
     console.log("Continuing with:", playerPokemon.name);
     confirmationDiv.remove();
-    animate();
+    animate(); // Start the game with the existing Pokémon
   });
 
   const newGameButton = document.createElement("button");
   newGameButton.innerText = "Start a New Game";
   newGameButton.addEventListener("click", () => {
     console.log("New Game Button Clicked");
-    localStorage.removeItem("playerPokemon");
-    confirmationDiv.remove();
+    localStorage.removeItem("playerPokemon"); // Remove any saved Pokémon from localStorage
 
-    createStarterSelection();
+    playerPokemon = null;
+
+    confirmationDiv.remove();
+    createStarterSelection(); // Allow the user to choose a new starter Pokémon
   });
 
   confirmationDiv.appendChild(continueButton);
@@ -61,6 +77,7 @@ function askToContinue() {
   document.body.appendChild(confirmationDiv);
 }
 
+// Create a selection screen for the player to choose a starter Pokémon
 function createStarterSelection() {
   if (playerPokemon) {
     console.log("Game was played before, continue or start new game.");
@@ -133,6 +150,7 @@ function createStarterSelection() {
   document.body.appendChild(starterDiv);
 }
 
+// Handle the selection of a starter Pokémon
 function selectStarter(selectedPokemon) {
   alert(`You selected ${selectedPokemon.name} as your starter!`);
   const starterDiv = document.getElementById("starterSelection");
@@ -144,17 +162,11 @@ function selectStarter(selectedPokemon) {
 
   console.log("Selected Pokémon:", selectedPokemon);
 
-  animate();
+  animate(); // Start the game after selecting the starter Pokémon
 }
 
-const storedPlayerPokemon = localStorage.getItem("playerPokemon");
-if (storedPlayerPokemon) {
-  console.log("Game was played before, continue or start new game.");
-  askToContinue();
-} else {
-  console.log("No previous Pokémon found, starting new game.");
-  createStarterSelection();
-}
+// Call initGame() when the page is loaded or whenever appropriate
+window.onload = initGame;
 
 const canvas = document.querySelector("canvas");
 

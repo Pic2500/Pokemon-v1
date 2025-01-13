@@ -1,20 +1,72 @@
-let playerPokemon; // Deklarira se varijabla globalno
+let playerPokemon;
 function loadPlayerPokemon() {
   const storedPlayerPokemon = localStorage.getItem("playerPokemon");
   if (storedPlayerPokemon) {
     const parsedData = JSON.parse(storedPlayerPokemon);
     playerPokemon = new Monster(parsedData);
-  } else {
-    console.warn(
-      "No player Pokémon found in localStorage. Default Pokémon will be used."
-    );
-    playerPokemon = null;
+    return true;
   }
+  return false;
 }
 
-loadPlayerPokemon();
+function askToContinue() {
+  if (document.getElementById("confirmationDiv")) {
+    console.log("It already exists.");
+    return;
+  }
+
+  const confirmationDiv = document.createElement("div");
+  confirmationDiv.id = "confirmationDiv";
+  confirmationDiv.style.position = "absolute";
+  confirmationDiv.style.top = "50%";
+  confirmationDiv.style.left = "50%";
+  confirmationDiv.style.transform = "translate(-50%, -50%)";
+  confirmationDiv.style.backgroundColor = "#fff";
+  confirmationDiv.style.padding = "20px";
+  confirmationDiv.style.border = "2px solid #000";
+  confirmationDiv.style.display = "flex";
+  confirmationDiv.style.flexDirection = "column";
+  confirmationDiv.style.alignItems = "center";
+  confirmationDiv.style.zIndex = "1000";
+
+  const message = document.createElement("p");
+  message.innerText =
+    "A Pokémon was previously selected. Do you want to continue with it or start a new game?";
+  message.style.marginBottom = "20px";
+  confirmationDiv.appendChild(message);
+
+  const continueButton = document.createElement("button");
+  continueButton.innerText = "Continue with Previous Pokémon";
+  continueButton.style.marginBottom = "10px";
+  continueButton.addEventListener("click", () => {
+    const parsedData = JSON.parse(localStorage.getItem("playerPokemon"));
+    playerPokemon = new Monster(parsedData);
+    console.log("Continuing with:", playerPokemon.name);
+    confirmationDiv.remove();
+    animate();
+  });
+
+  const newGameButton = document.createElement("button");
+  newGameButton.innerText = "Start a New Game";
+  newGameButton.addEventListener("click", () => {
+    console.log("New Game Button Clicked");
+    localStorage.removeItem("playerPokemon");
+    confirmationDiv.remove();
+
+    createStarterSelection();
+  });
+
+  confirmationDiv.appendChild(continueButton);
+  confirmationDiv.appendChild(newGameButton);
+  document.body.appendChild(confirmationDiv);
+}
 
 function createStarterSelection() {
+  if (playerPokemon) {
+    console.log("Game was played before, continue or start new game.");
+    return;
+  }
+
   const starterDiv = document.createElement("div");
   starterDiv.id = "starterSelection";
   starterDiv.style.position = "absolute";
@@ -86,15 +138,23 @@ function selectStarter(selectedPokemon) {
   const starterDiv = document.getElementById("starterSelection");
   if (starterDiv) starterDiv.remove();
 
-  window.playerPokemon = selectedPokemon;
+  playerPokemon = selectedPokemon;
 
   localStorage.setItem("playerPokemon", JSON.stringify(selectedPokemon));
 
-  console.log(selectedPokemon);
+  console.log("Selected Pokémon:", selectedPokemon);
+
   animate();
 }
 
-createStarterSelection();
+const storedPlayerPokemon = localStorage.getItem("playerPokemon");
+if (storedPlayerPokemon) {
+  console.log("Game was played before, continue or start new game.");
+  askToContinue();
+} else {
+  console.log("No previous Pokémon found, starting new game.");
+  createStarterSelection();
+}
 
 const canvas = document.querySelector("canvas");
 

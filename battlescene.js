@@ -10,11 +10,6 @@ const battleBackground = new Sprite({
   animte: false,
 });
 
-battleBackgroundImage.onload = () => {
-  console.log("Battle background image loaded.");
-  //animateBattle(); // Start the battle animation after the background image is loaded
-};
-
 const storedPlayerPokemon = JSON.parse(localStorage.getItem("playerPokemon"));
 
 if (storedPlayerPokemon) {
@@ -231,7 +226,6 @@ function animateBattle() {
     sprite.draw();
   });
 }
-console.log(playerPokemon);
 
 // initBattle();
 // animateBattle();

@@ -156,7 +156,7 @@ function selectStarter(selectedPokemon) {
   const starterDiv = document.getElementById("starterSelection");
   if (starterDiv) starterDiv.remove();
 
-  playerPokemon = selectedPokemon;
+  playerPokemon = new Monster(selectedPokemon);
 
   localStorage.setItem("playerPokemon", JSON.stringify(selectedPokemon));
 

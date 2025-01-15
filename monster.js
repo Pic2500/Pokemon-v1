@@ -4,10 +4,10 @@ const playermonster = {
       x: 280,
       y: 350,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/CharmanderBack.png",
-      src: "./Pokemonimages/Monsters/CharmanderFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/CharmanderBack.png",
+    frontImage: "./Pokemonimages/Monsters/CharmanderFront.png",
+
     animate: true,
     name: "Charmander",
     level: 5,
@@ -21,10 +21,10 @@ const playermonster = {
       x: 280,
       y: 360,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/bulbasaurBack.png",
-      src: "./Pokemonimages/Monsters/bulbasaurFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/bulbasaurBack.png",
+    frontImage: "./Pokemonimages/Monsters/bulbasaurFront.png",
+
     animate: true,
     name: "Bulbasaur",
     level: 5,
@@ -38,10 +38,10 @@ const playermonster = {
       x: 280,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/SquirtleBack.png",
-      src: "./Pokemonimages/Monsters/SquirtleFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/SquirtleBack.png",
+    frontImage: "./Pokemonimages/Monsters/SquirtleFront.png",
+
     animate: true,
     name: "Squirtle",
     level: 5,
@@ -55,10 +55,10 @@ const playermonster = {
       x: 280,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/chikoritaBack.png",
-      src: "./Pokemonimages/Monsters/chikoritaFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/chikoritaBack.png",
+    frontImage: "./Pokemonimages/Monsters/chikoritaFront.png",
+
     animate: true,
     name: "Chikorita",
     level: 5,
@@ -72,10 +72,10 @@ const playermonster = {
       x: 280,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/cyndaquilBack.png",
-      src: "./Pokemonimages/Monsters/cyndaquilFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/cyndaquilBack.png",
+    frontImage: "./Pokemonimages/Monsters/cyndaquilFront.png",
+
     animate: true,
     name: "Cyndaquil",
     level: 5,
@@ -89,10 +89,10 @@ const playermonster = {
       x: 280,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/totodileBack.png",
-      src: "./Pokemonimages/Monsters/totodileFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/totodileBack.png",
+    frontImage: "./Pokemonimages/Monsters/totodileFront.png",
+
     animate: true,
     name: "Totodile",
     level: 5,
@@ -106,10 +106,10 @@ const playermonster = {
       x: 280,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/treeckoBack.png",
-      src: "./Pokemonimages/Monsters/treeckoFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/treeckoBack.png",
+    frontImage: "./Pokemonimages/Monsters/treeckoFront.png",
+
     animate: true,
     name: "Treecko",
     level: 5,
@@ -123,10 +123,10 @@ const playermonster = {
       x: 280,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/torchicBack.png",
-      src: "./Pokemonimages/Monsters/torchicFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/torchicBack.png",
+    frontImage: "./Pokemonimages/Monsters/torchicFront.png",
+
     animate: true,
     name: "Torchic",
     level: 5,
@@ -140,10 +140,10 @@ const playermonster = {
       x: 280,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/mudkipBack.png",
-      src: "./Pokemonimages/Monsters/mudkipFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/mudkipBack.png",
+    frontImage: "./Pokemonimages/Monsters/mudkipFront.png",
+
     animate: true,
     name: "Mudkip",
     level: 5,
@@ -157,10 +157,10 @@ const playermonster = {
       x: 280,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/turtwigBack.png",
-      src: "./Pokemonimages/Monsters/turtwigFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/turtwigBack.png",
+    frontImage: "./Pokemonimages/Monsters/turtwigFront.png",
+
     animate: true,
     name: "Turtwig",
     level: 5,
@@ -174,10 +174,10 @@ const playermonster = {
       x: 250,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/chimcharBack.png",
-      src: "./Pokemonimages/Monsters/chimcharFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/chimcharBack.png",
+    frontImage: "./Pokemonimages/Monsters/chimcharFront.png",
+
     animate: true,
     name: "Chimchar",
     level: 5,
@@ -191,10 +191,10 @@ const playermonster = {
       x: 250,
       y: 352,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/piplupBack.png",
-      src: "./Pokemonimages/Monsters/piplupFront.png",
-    },
+
+    backImage: "./Pokemonimages/Monsters/piplupBack.png",
+    frontImage: "./Pokemonimages/Monsters/piplupFront.png",
+
     animate: true,
     name: "Piplup",
     level: 5,
@@ -210,9 +210,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/CharmanderFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/CharmanderFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Charmander",
@@ -226,9 +226,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/bulbasaurFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/bulbasaurFront.png",
+
     name: "Bulbasaur",
     level: 3,
     health: 19,
@@ -243,9 +243,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/SquirtleFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/SquirtleFront.png",
+
     name: "Squirtle",
     level: 6,
     health: 28,
@@ -260,9 +260,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/chikoritaFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/chikoritaFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Chikorita",
@@ -277,9 +277,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/cyndaquilFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/cyndaquilFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Cyndaquil",
@@ -294,9 +294,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/totodileFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/totodileFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Totodile",
@@ -311,9 +311,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/treeckoFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/treeckoFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Treecko",
@@ -328,9 +328,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/torchicFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/torchicFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Torchic",
@@ -345,9 +345,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/mudkipFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/mudkipFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Mudkip",
@@ -362,9 +362,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/turtwigFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/turtwigFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Turtwig",
@@ -379,9 +379,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/chimcharFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/chimcharFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Chimchar",
@@ -396,9 +396,9 @@ const monsterEnemy = {
       x: 740,
       y: 80,
     },
-    image: {
-      src: "./Pokemonimages/Monsters/piplupFront.png",
-    },
+
+    frontImage: "./Pokemonimages/Monsters/piplupFront.png",
+
     animate: true,
     isEnemy: true,
     name: "Piplup",

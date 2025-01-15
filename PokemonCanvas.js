@@ -128,7 +128,13 @@ function createStarterSelection() {
     };
 
     const image = document.createElement("img");
-    image.src = pokemon.image.src;
+    if (pokemon.frontImage) {
+      image.src = pokemon.frontImage; // Ensure it points to the correct front image
+    } else {
+      console.error(`Front image not defined for ${pokemon.name}`);
+    }
+    console.log("Pokemon data:", pokemon);
+
     image.alt = pokemon.name;
     image.style.width = "80px";
     image.style.height = "80px";
@@ -160,7 +166,7 @@ function selectStarter(selectedPokemon) {
 
   localStorage.setItem("playerPokemon", JSON.stringify(selectedPokemon));
 
-  console.log("Selected Pokémon:", selectedPokemon);
+  console.log("Selected Pokémon:", selectedPokemon.name);
 
   animate(); // Start the game after selecting the starter Pokémon
 }

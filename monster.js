@@ -211,8 +211,8 @@ const monsterEnemy = {
       y: 80,
     },
 
+    backImage: "./Pokemonimages/Monsters/CharmanderBack.png",
     frontImage: "./Pokemonimages/Monsters/CharmanderFront.png",
-
     animate: true,
     isEnemy: true,
     name: "Charmander",
@@ -228,6 +228,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/bulbasaurFront.png",
+    backImage: "./Pokemonimages/Monsters/bulbasaurBack.png",
 
     name: "Bulbasaur",
     level: 3,
@@ -245,6 +246,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/SquirtleFront.png",
+    backImage: "./Pokemonimages/Monsters/SquirtleBack.png",
 
     name: "Squirtle",
     level: 6,
@@ -262,6 +264,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/chikoritaFront.png",
+    backImage: "./Pokemonimages/Monsters/chikoritaBack.png",
 
     animate: true,
     isEnemy: true,
@@ -279,6 +282,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/cyndaquilFront.png",
+    backImage: "./Pokemonimages/Monsters/cyndaquilBack.png",
 
     animate: true,
     isEnemy: true,
@@ -296,6 +300,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/totodileFront.png",
+    backImage: "./Pokemonimages/Monsters/totodileBack.png",
 
     animate: true,
     isEnemy: true,
@@ -313,6 +318,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/treeckoFront.png",
+    backImage: "./Pokemonimages/Monsters/treeckoBack.png",
 
     animate: true,
     isEnemy: true,
@@ -330,6 +336,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/torchicFront.png",
+    backImage: "./Pokemonimages/Monsters/torchicBack.png",
 
     animate: true,
     isEnemy: true,
@@ -347,6 +354,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/mudkipFront.png",
+    backImage: "./Pokemonimages/Monsters/mudkipBack.png",
 
     animate: true,
     isEnemy: true,
@@ -364,6 +372,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/turtwigFront.png",
+    backImage: "./Pokemonimages/Monsters/turtwigBack.png",
 
     animate: true,
     isEnemy: true,
@@ -381,6 +390,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/chimcharFront.png",
+    backImage: "./Pokemonimages/Monsters/chimcharBack.png",
 
     animate: true,
     isEnemy: true,
@@ -398,6 +408,7 @@ const monsterEnemy = {
     },
 
     frontImage: "./Pokemonimages/Monsters/piplupFront.png",
+    backImage: "./Pokemonimages/Monsters/piplupBack.png",
 
     animate: true,
     isEnemy: true,

@@ -66,6 +66,7 @@ class Monster extends Sprite {
   constructor({
     position,
     velocity,
+    image,
     frames = { max: 1, hold: 10 },
     sprites,
     animate = false,
@@ -75,14 +76,13 @@ class Monster extends Sprite {
     attacks,
     level,
     maxHealth,
-    backImage, // Add backImage to the constructor
-    frontImage, // Add frontImage to the constructor
+    backImage,
+    frontImage,
   }) {
-    // Ensure the image is set correctly based on the isEnemy flag
     super({
       position,
       velocity,
-      image: new Image(), // Initialize the image here
+      image: backImage,
       frames,
       sprites,
       animate,
@@ -96,21 +96,27 @@ class Monster extends Sprite {
     this.level = level;
     this.maxHealth = maxHealth || 100;
     this.health = this.maxHealth;
+    this.backImage = backImage;
+    this.frontImage = frontImage;
 
-    // Set the image based on whether it's an enemy or not
     if (this.isEnemy) {
-      this.image.src = frontImage; // Use frontImage if isEnemy is true
+      if (frontImage) {
+        this.image.src = frontImage; // Use frontImage if isEnemy is true
+      } else {
+        console.error("Error: Enemy front image path is undefined");
+      }
     } else {
-      this.image.src = backImage; // Use backImage if isEnemy is false
+      if (backImage) {
+        this.image.src = backImage; // Use backImage if isEnemy is false
+      } else {
+        console.error("Error: Player back image path is undefined");
+      }
     }
 
-    // Ensure the image dimensions are set once loaded
     this.image.onload = () => {
       this.width = this.image.width / this.frames.max;
       this.height = this.image.height;
     };
-    console.log("Front Image Path: ", frontImage);
-    console.log("Back Image Path: ", backImage);
   }
 
   takeDamage(damage, healthBarSelector) {

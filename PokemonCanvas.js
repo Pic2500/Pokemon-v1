@@ -133,7 +133,6 @@ function createStarterSelection() {
     } else {
       console.error(`Front image not defined for ${pokemon.name}`);
     }
-    console.log("Pokemon data:", pokemon);
 
     image.alt = pokemon.name;
     image.style.width = "80px";

@@ -11,24 +11,26 @@
     />
   </head>
   <body>
-    <div style="display: inline-block; position: relative">
-      <div
-        id="overlappingDiv"
-        style="
-          background-color: black;
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          opacity: 0;
-          pointer-events: none;
-          z-index: 10;
-        "
-      ></div>
-
-      <canvas></canvas>
-
+    
+      <div style="display: inline-block; position: relative">
+        <div
+          id="overlappingDiv"
+          style="
+            background-color: black;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+          "
+        ></div>
+        <div class="pokemon-pixel-border">
+        <canvas></canvas>
+      </div>
+      </div>
       <div id="userInterface" style="display: none" ;>
         <!-- enemyHealthBar -->
         <div
@@ -36,8 +38,8 @@
             background-color: white;
             width: 250px;
             position: absolute;
-            top: 50px;
-            left: 50px;
+            top: 5%;
+            left: 55%;
             border: 4px black solid;
             padding: 12px;
           "
@@ -73,8 +75,8 @@
             background-color: white;
             width: 250px;
             position: absolute;
-            top: 330px;
-            right: 50px;
+            top: 45%;
+            right: 63%;
             border: 4px black solid;
             padding: 12px;
           "
@@ -104,16 +106,17 @@
           </div>
         </div>
 
-        <div
+        <div id="bottomDiv"
           style="
             background-color: white;
             height: 140px;
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 12.5%;
+            left: 16%;
+            right: 16%;
             border-top: 4px black solid;
             display: flex;
+            
           "
         >
           <div

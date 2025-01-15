@@ -1,28 +1,23 @@
 let playerPokemon;
 
-// Load player Pokémon from localStorage (if exists)
 function loadPlayerPokemon() {
   const storedPlayerPokemon = localStorage.getItem("playerPokemon");
   if (storedPlayerPokemon) {
     const parsedData = JSON.parse(storedPlayerPokemon);
-    playerPokemon = new Monster(parsedData); // Assuming Monster class is defined elsewhere
+    playerPokemon = new Monster(parsedData);
     return true;
   }
   return false;
 }
 
-// Initialize the game and ask if the user wants to continue or start a new game
 function initGame() {
   if (loadPlayerPokemon()) {
-    // If player has a saved Pokémon, ask whether to continue or start a new game
     askToContinue();
   } else {
-    // If no Pokémon is saved, proceed directly to starter selection
     createStarterSelection();
   }
 }
 
-// Ask the user whether to continue with their previous Pokémon or start a new game
 function askToContinue() {
   if (document.getElementById("confirmationDiv")) {
     console.log("It already exists.");
@@ -57,14 +52,14 @@ function askToContinue() {
     playerPokemon = new Monster(parsedData);
     console.log("Continuing with:", playerPokemon.name);
     confirmationDiv.remove();
-    animate(); // Start the game with the existing Pokémon
+    animate();
   });
 
   const newGameButton = document.createElement("button");
   newGameButton.innerText = "Start a New Game";
   newGameButton.addEventListener("click", () => {
     console.log("New Game Button Clicked");
-    localStorage.removeItem("playerPokemon"); // Remove any saved Pokémon from localStorage
+    localStorage.removeItem("playerPokemon");
 
     playerPokemon = null;
 
@@ -91,26 +86,33 @@ function createStarterSelection() {
   starterDiv.style.left = "50%";
   starterDiv.style.transform = "translate(-50%, -50%)";
   starterDiv.style.backgroundColor = "#fff";
-  starterDiv.style.padding = "20px";
+  starterDiv.style.padding = "15px";
   starterDiv.style.border = "2px solid #000";
   starterDiv.style.display = "flex";
   starterDiv.style.flexDirection = "column";
   starterDiv.style.alignItems = "center";
+  starterDiv.style.zIndex = "10"; // Ensure it's above other content (like the canvas)
 
+  // Title
   const title = document.createElement("h2");
   title.innerText = "Select your starter Pokémon";
   title.style.marginBottom = "20px";
   starterDiv.appendChild(title);
 
+  // Container for the Pokémon options
   const startersContainer = document.createElement("div");
   startersContainer.style.display = "flex";
   startersContainer.style.flexWrap = "wrap";
   startersContainer.style.gap = "15px";
+  startersContainer.style.justifyContent = "center";
+  startersContainer.style.alignItems = "center";
   starterDiv.appendChild(startersContainer);
 
+  // Loop through each Pokémon and create a div for selection
   Object.keys(playermonster).forEach((key) => {
     const pokemon = playermonster[key];
 
+    // Container for each Pokémon
     const pokemonContainer = document.createElement("div");
     pokemonContainer.style.display = "flex";
     pokemonContainer.style.flexDirection = "column";
@@ -120,6 +122,11 @@ function createStarterSelection() {
     pokemonContainer.style.border = "1px solid #000";
     pokemonContainer.style.borderRadius = "5px";
     pokemonContainer.style.transition = "transform 0.2s";
+    pokemonContainer.style.width = "120px"; // Set a fixed width for each Pokémon container
+    pokemonContainer.style.height = "150px"; // Set a fixed height for each Pokémon container
+    pokemonContainer.style.justifyContent = "center"; // Center Pokémon name and image
+    pokemonContainer.style.textAlign = "center"; // Center text inside the container
+
     pokemonContainer.onmouseover = () => {
       pokemonContainer.style.transform = "scale(1.1)";
     };
@@ -127,6 +134,7 @@ function createStarterSelection() {
       pokemonContainer.style.transform = "scale(1)";
     };
 
+    // Image for Pokémon
     const image = document.createElement("img");
     if (pokemon.frontImage) {
       image.src = pokemon.frontImage;
@@ -135,14 +143,17 @@ function createStarterSelection() {
     }
 
     image.alt = pokemon.name;
-    image.style.width = "80px";
-    image.style.height = "80px";
+    image.style.width = "80px"; // Set a fixed width for the Pokémon image
+    image.style.height = "80px"; // Set a fixed height for the Pokémon image
+    image.style.objectFit = "contain"; // Ensure the image scales properly inside the div
     pokemonContainer.appendChild(image);
 
+    // Pokémon name
     const name = document.createElement("p");
     name.innerText = pokemon.name;
     name.style.marginTop = "10px";
     name.style.fontWeight = "bold";
+    name.style.fontSize = "14px"; // Optionally set a font size for the name
     pokemonContainer.appendChild(name);
 
     pokemonContainer.addEventListener("click", () => {
@@ -169,7 +180,7 @@ function selectStarter(selectedPokemon) {
   animate();
 }
 
-window.onload = initGame;
+//window.onload = initGame;
 
 const canvas = document.querySelector("canvas");
 

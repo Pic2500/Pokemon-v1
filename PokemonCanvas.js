@@ -129,7 +129,7 @@ function createStarterSelection() {
 
     const image = document.createElement("img");
     if (pokemon.frontImage) {
-      image.src = pokemon.frontImage; // Ensure it points to the correct front image
+      image.src = pokemon.frontImage;
     } else {
       console.error(`Front image not defined for ${pokemon.name}`);
     }
@@ -155,7 +155,6 @@ function createStarterSelection() {
   document.body.appendChild(starterDiv);
 }
 
-// Handle the selection of a starter Pokémon
 function selectStarter(selectedPokemon) {
   alert(`You selected ${selectedPokemon.name} as your starter!`);
   const starterDiv = document.getElementById("starterSelection");
@@ -167,10 +166,9 @@ function selectStarter(selectedPokemon) {
 
   console.log("Selected Pokémon:", selectedPokemon.name);
 
-  animate(); // Start the game after selecting the starter Pokémon
+  animate();
 }
 
-// Call initGame() when the page is loaded or whenever appropriate
 window.onload = initGame;
 
 const canvas = document.querySelector("canvas");

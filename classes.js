@@ -101,13 +101,13 @@ class Monster extends Sprite {
 
     if (this.isEnemy) {
       if (frontImage) {
-        this.image.src = frontImage; // Use frontImage if isEnemy is true
+        this.image.src = frontImage;
       } else {
         console.error("Error: Enemy front image path is undefined");
       }
     } else {
       if (backImage) {
-        this.image.src = backImage; // Use backImage if isEnemy is false
+        this.image.src = backImage;
       } else {
         console.error("Error: Player back image path is undefined");
       }
@@ -120,26 +120,20 @@ class Monster extends Sprite {
   }
 
   takeDamage(damage, healthBarSelector) {
-    // Decrease health and clamp it to 0
     this.health = Math.max(0, this.health - damage);
 
-    // Update health bar
     this.updateHealthBar(healthBarSelector);
 
-    // Log the updated health
     console.log(
       `${this.name} took ${damage} damage! HP: ${this.health}/${this.maxHealth}`
     );
   }
 
   heal(amount, healthBarSelector) {
-    // Increase health and clamp it to maxHealth
     this.health = Math.min(this.maxHealth, this.health + amount);
 
-    // Update health bar
     this.updateHealthBar(healthBarSelector);
 
-    // Log the updated health
     console.log(
       `${this.name} healed ${amount}! HP: ${this.health}/${this.maxHealth}`
     );

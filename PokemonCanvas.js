@@ -180,7 +180,7 @@ function selectStarter(selectedPokemon) {
   animate();
 }
 
-//window.onload = initGame;
+window.onload = initGame;
 
 const canvas = document.querySelector("canvas");
 

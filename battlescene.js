@@ -113,15 +113,7 @@ function initBattle() {
         renderedSprites,
       });
 
-      updateHealthBar(playerPokemon, "#playerHealthBar");
       updateHealthBar(enemyPokemon, "#enemyHealthBar");
-
-      document.querySelector(
-        "#playerHealthDisplay"
-      ).textContent = `HP: ${playerPokemon.health}/${playerPokemon.maxHealth}`;
-      document.querySelector(
-        "#enemyHealthDisplay"
-      ).textContent = `HP: ${enemyPokemon.health}/${enemyPokemon.maxHealth}`;
 
       if (enemyPokemon.health <= 0) {
         queue.push(() => {
@@ -168,12 +160,7 @@ function initBattle() {
           renderedSprites,
         });
 
-        document.querySelector(
-          "#playerHealthDisplay"
-        ).textContent = `HP: ${playerPokemon.health}/${playerPokemon.maxHealth}`;
-        document.querySelector(
-          "#enemyHealthDisplay"
-        ).textContent = `HP: ${enemyPokemon.health}/${enemyPokemon.maxHealth}`;
+        updateHealthBar(playerPokemon, "#playerHealthBar");
 
         if (playerPokemon.health <= 0) {
           queue.push(() => {
@@ -221,8 +208,8 @@ function animateBattle() {
   });
 }
 
-// initBattle();
-// animateBattle();
+initBattle();
+animateBattle();
 
 document.querySelector("#dialogueBox").addEventListener("click", (e) => {
   if (queue.length > 0) {

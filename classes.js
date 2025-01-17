@@ -119,26 +119,6 @@ class Monster extends Sprite {
     };
   }
 
-  takeDamage(damage, healthBarSelector) {
-    this.health = Math.max(0, this.health - damage);
-
-    this.updateHealthBar(healthBarSelector);
-
-    console.log(
-      `${this.name} took ${damage} damage! HP: ${this.health}/${this.maxHealth}`
-    );
-  }
-
-  heal(amount, healthBarSelector) {
-    this.health = Math.min(this.maxHealth, this.health + amount);
-
-    this.updateHealthBar(healthBarSelector);
-
-    console.log(
-      `${this.name} healed ${amount}! HP: ${this.health}/${this.maxHealth}`
-    );
-  }
-
   faint() {
     document.querySelector("#dialogueBox").innerHTML = this.name + " fainted!";
     gsap.to(this.position, {
@@ -195,9 +175,7 @@ class Monster extends Sprite {
             //Damage  done
 
             audio.fireballHit.play();
-            gsap.to(healthBar, {
-              width: recipient.health + "%",
-            });
+
             gsap.to(recipient.position, {
               x: recipient.position.x + 10,
               yoyo: true,
@@ -229,9 +207,7 @@ class Monster extends Sprite {
             onComplete: () => {
               //Damage  done
               audio.tackleHit.play();
-              gsap.to(healthBar, {
-                width: recipient.health + "%",
-              });
+
               gsap.to(recipient.position, {
                 x: recipient.position.x + 10,
                 yoyo: true,
@@ -264,9 +240,7 @@ class Monster extends Sprite {
             onComplete: () => {
               //Damage  done
               audio.tackleHit.play();
-              gsap.to(healthBar, {
-                width: recipient.health + "%",
-              });
+
               gsap.to(recipient.position, {
                 x: recipient.position.x + 10,
                 yoyo: true,
@@ -300,9 +274,7 @@ class Monster extends Sprite {
             onComplete: () => {
               //Damage  done
               audio.tackleHit.play();
-              gsap.to(healthBar, {
-                width: recipient.health + "%",
-              });
+
               gsap.to(recipient.position, {
                 x: recipient.position.x + 10,
                 yoyo: true,

@@ -2,11 +2,19 @@ let playerPokemon;
 
 function loadPlayerPokemon() {
   const storedPlayerPokemon = localStorage.getItem("playerPokemon");
+  const storedXP = localStorage.getItem("playerXP");
+
   if (storedPlayerPokemon) {
     const parsedData = JSON.parse(storedPlayerPokemon);
     playerPokemon = new Monster(parsedData);
+
+    // Check if there's stored XP and apply it to the playerPokemon
+    if (storedXP) {
+      playerPokemon.experience = parseInt(storedXP); // Set the stored XP
+    }
     return true;
   }
+
   return false;
 }
 
@@ -173,14 +181,12 @@ function selectStarter(selectedPokemon) {
 
   playerPokemon = new Monster(selectedPokemon);
 
-  localStorage.setItem("playerPokemon", JSON.stringify(selectedPokemon));
-
   console.log("Selected Pokémon:", selectedPokemon.name);
 
   animate();
 }
 
-//window.onload = initGame;
+window.onload = initGame;
 
 const canvas = document.querySelector("canvas");
 
@@ -333,6 +339,7 @@ const battle = {
 };
 function animate() {
   const animationId = window.requestAnimationFrame(animate);
+  c.clearRect(0, 0, canvas.width, canvas.height);
   background.draw();
   boundaries.forEach((Boundary) => {
     Boundary.draw();

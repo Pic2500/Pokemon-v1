@@ -74,10 +74,11 @@ class Monster extends Sprite {
     isEnemy = false,
     name,
     attacks,
-    level,
+    level = 5,
     maxHealth,
     backImage,
     frontImage,
+    experience,
   }) {
     super({
       position,
@@ -87,6 +88,7 @@ class Monster extends Sprite {
       sprites,
       animate,
       rotation,
+      experience,
     });
 
     this.name = name;
@@ -94,6 +96,9 @@ class Monster extends Sprite {
     this.health = 100;
     this.attacks = attacks;
     this.level = level;
+    this.experience = 0;
+    this.experienceToNextLevel = this.calculateExperienceToNextLevel();
+
     this.maxHealth = maxHealth || 100;
     this.health = this.maxHealth;
     this.backImage = backImage;
@@ -119,16 +124,108 @@ class Monster extends Sprite {
     };
   }
 
+  // Function to calculate XP required for the next level based on current level
+  calculateExperienceToNextLevel() {
+    return Math.floor(4.2 * Math.pow(this.level, 1.2)); // Adjust formula as needed
+  }
+
+  // Funkcija za dodavanje XP
+  gainExperience(amount) {
+    console.log(`${this.name} gains ${amount} XP!`);
+    this.experience += amount; // Add the gained XP
+
+    // Save XP to localStorage whenever it changes
+    localStorage.setItem("playerXP", this.experience);
+    let levelUpMessage = "";
+    while (this.experience >= this.experienceToNextLevel) {
+      levelUpMessage = `${this.name} leveled up to level ${this.level + 1}!`;
+      this.levelUp();
+    }
+
+    // Display the level-up message if the Pokémon leveled up
+    if (levelUpMessage) {
+      document.querySelector("#dialogueBox").innerHTML = levelUpMessage;
+    } else {
+      // Update dialogue with XP gained if no level-up
+      document.querySelector(
+        "#dialogueBox"
+      ).innerHTML = `${this.name} gained ${amount} XP!`;
+    }
+  }
+
+  loadPlayerXP() {
+    const savedXP = localStorage.getItem("playerXP");
+    if (savedXP) {
+      this.experience = parseInt(savedXP);
+      // Proveri da li je nivo igrača potrebno ažurirati
+      while (this.experience >= this.experienceToNextLevel) {
+        this.levelUp();
+      }
+    }
+  }
+
+  // Funkcija za levelovanje
+  levelUp() {
+    this.experience -= this.experienceToNextLevel; // Preostali XP se prenosi
+    this.level++; // Povećava nivo
+    this.experienceToNextLevel = this.calculateExperienceToNextLevel(); // Ažurira XP potreban za sledeći nivo
+    this.maxHealth = this.calculateMaxHealth(); // Ažurira maksimalno zdravlje na osnovu nivoa
+    this.health = this.maxHealth; // Vraća zdravlje na maksimalnu vrednost
+
+    console.log(`${this.name} je dostigao nivo ${this.level}!`);
+  }
+
+  // Funkcija za izračunavanje novog maksimalnog zdravlja sa nivoom
+  calculateMaxHealth() {
+    return this.level * 10 + 100; // Možeš prilagoditi formulu za zdravlje
+  }
+
   faint() {
-    document.querySelector("#dialogueBox").innerHTML = this.name + " fainted!";
-    gsap.to(this.position, {
-      y: this.position.y + 20,
-    });
-    gsap.to(this, {
-      opacity: 0,
-    });
-    audio.battle.stop();
-    audio.victory.play();
+    // Check if it's the enemy Pokémon fainting
+    if (this.isEnemy) {
+      // Display the fainted message
+      document.querySelector("#dialogueBox").innerHTML =
+        this.name + " fainted!";
+
+      // Gain experience for the player Pokémon after the enemy faints
+      const experienceGained =
+        Math.floor(Math.random() * 20) + 10 + (this.level - 5); // Example XP formula, adjust as needed
+      playerPokemon.gainExperience(experienceGained); // Assuming playerPokemon is your player Pokémon object
+
+      // Update dialogue box to show experience gained
+      document.querySelector(
+        "#dialogueBox"
+      ).innerHTML += `<br>${playerPokemon.name} gained ${experienceGained} XP!`;
+
+      // Animate the fainting effect for the enemy Pokémon
+      gsap.to(this.position, {
+        y: this.position.y + 20,
+      });
+      gsap.to(this, {
+        opacity: 0,
+      });
+
+      // Stop battle audio and play victory sound
+      audio.battle.stop();
+      audio.victory.play();
+    } else {
+      // If the player Pokémon faints, show faint message and stop the game (or handle it)
+      document.querySelector("#dialogueBox").innerHTML =
+        this.name + " fainted!";
+      // Reset player's HP to 100%
+      this.health = this.maxHealth;
+
+      // Move the player Pokémon back to its starting position
+
+      gsap.to(this.position, {
+        y: this.position.y + 20,
+      });
+      gsap.to(this, {
+        opacity: 0,
+      });
+      audio.battle.stop();
+      audio.victory.play(); // Play a game over sound or take any other actions
+    }
   }
 
   attack({ attack, recipient, renderedSprites }) {
@@ -172,8 +269,7 @@ class Monster extends Sprite {
           x: recipient.position.x,
           y: recipient.position.y,
           onComplete: () => {
-            //Damage  done
-
+            //Damage done
             audio.fireballHit.play();
 
             gsap.to(recipient.position, {
@@ -192,7 +288,6 @@ class Monster extends Sprite {
             renderedSprites.splice(1, 1);
           },
         });
-
         break;
 
       case "Tackle":
@@ -205,7 +300,7 @@ class Monster extends Sprite {
             x: this.position.x + movementDistance * 2,
             duration: 0.1,
             onComplete: () => {
-              //Damage  done
+              //Damage done
               audio.tackleHit.play();
 
               gsap.to(recipient.position, {
@@ -238,7 +333,7 @@ class Monster extends Sprite {
             x: this.position.x + movementDistance * 2,
             duration: 0.1,
             onComplete: () => {
-              //Damage  done
+              //Damage done
               audio.tackleHit.play();
 
               gsap.to(recipient.position, {
@@ -259,7 +354,6 @@ class Monster extends Sprite {
           .to(this.position, {
             x: this.position.x,
           });
-
         break;
 
       case "Vinewhip":
@@ -272,7 +366,7 @@ class Monster extends Sprite {
             x: this.position.x + movementDistance * 2,
             duration: 0.1,
             onComplete: () => {
-              //Damage  done
+              //Damage done
               audio.tackleHit.play();
 
               gsap.to(recipient.position, {

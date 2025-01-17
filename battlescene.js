@@ -97,6 +97,12 @@ function initBattle() {
   document.querySelector(
     "#enemyHealthDisplay"
   ).textContent = `HP: ${enemyPokemon.health}/${enemyPokemon.maxHealth}`;
+  document.querySelector(
+    "#expDisplay"
+  ).textContent = `EXP: ${playerPokemon.experience}/${playerPokemon.experienceToNextLevel}`;
+  expDisplay;
+  updateHealthBar(playerPokemon, "#playerHealthBar");
+  updateHealthBar(enemyPokemon, "#enemyHealthBar");
 
   playerPokemon.attacks.forEach((attack) => {
     const button = document.createElement("button");
@@ -162,6 +168,37 @@ function initBattle() {
 
         updateHealthBar(playerPokemon, "#playerHealthBar");
 
+        function showLoseMessage() {
+          const loseMessageDiv = document.createElement("div");
+          loseMessageDiv.id = "loseMessage";
+          loseMessageDiv.innerHTML =
+            "You lost the battle! You are going back to your house. Your Pokemon is healed, and you can continue your journey!";
+
+          // Styling for the message
+          loseMessageDiv.style.position = "absolute";
+          loseMessageDiv.style.top = "50%";
+          loseMessageDiv.style.left = "50%";
+          loseMessageDiv.style.transform = "translate(-50%, -50%)";
+          loseMessageDiv.style.padding = "20px";
+          loseMessageDiv.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+          loseMessageDiv.style.color = "white";
+          loseMessageDiv.style.fontSize = "20px";
+          loseMessageDiv.style.borderRadius = "10px";
+          loseMessageDiv.style.cursor = "pointer";
+
+          // Add the message to the body or a specific container
+          document.body.appendChild(loseMessageDiv);
+
+          // Add event listener to hide the message on click
+          loseMessageDiv.addEventListener("click", () => {
+            loseMessageDiv.style.opacity = 0; // Fade out the message
+            setTimeout(() => {
+              loseMessageDiv.style.display = "none";
+              // Hide after the fade-out effect
+            }, 500); // Match the fade-out duration
+          });
+        }
+
         if (playerPokemon.health <= 0) {
           queue.push(() => {
             playerPokemon.faint();
@@ -171,6 +208,7 @@ function initBattle() {
             gsap.to("#overlappingDiv", {
               opacity: 1,
               onComplete: () => {
+                showLoseMessage();
                 cancelAnimationFrame(battleanimationId);
                 animate();
                 document.querySelector("#userInterface").style.display = "none";
@@ -178,7 +216,6 @@ function initBattle() {
                 gsap.to("#overlappingDiv", {
                   opacity: 0,
                 });
-                battle.initiated = false;
 
                 audio.Map.play();
               },
@@ -208,8 +245,8 @@ function animateBattle() {
   });
 }
 
-initBattle();
-animateBattle();
+// initBattle();
+// animateBattle();
 
 document.querySelector("#dialogueBox").addEventListener("click", (e) => {
   if (queue.length > 0) {

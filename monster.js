@@ -183,7 +183,7 @@ const playermonster = {
     level: 5,
     health: 24,
     maxHealth: 24,
-    attacks: [attacks.Tackle, attacks.Vinewhip],
+    attacks: [attacks.Tackle, attacks.Fireball],
   },
 
   Piplup: {
@@ -398,7 +398,7 @@ const monsterEnemy = {
     level: 8,
     health: 24,
     maxHealth: 24,
-    attacks: [attacks.Tackle, attacks.Vinewhip],
+    attacks: [attacks.Tackle, attacks.Fireball],
   },
 
   Piplup: {

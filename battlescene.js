@@ -194,6 +194,8 @@ function initBattle() {
             loseMessageDiv.style.opacity = 0; // Fade out the message
             setTimeout(() => {
               loseMessageDiv.style.display = "none";
+              playerPokemon.opacity = 1;
+
               // Hide after the fade-out effect
             }, 500); // Match the fade-out duration
           });
@@ -216,6 +218,7 @@ function initBattle() {
                 gsap.to("#overlappingDiv", {
                   opacity: 0,
                 });
+                battle.initiated = false;
 
                 audio.Map.play();
               },

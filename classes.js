@@ -177,7 +177,7 @@ class Monster extends Sprite {
 
   // Funkcija za izračunavanje novog maksimalnog zdravlja sa nivoom
   calculateMaxHealth() {
-    return this.level * 10 + 100; // Možeš prilagoditi formulu za zdravlje
+    return Math.floor(20 + this.level ** 2 / 2);
   }
 
   faint() {
@@ -197,7 +197,6 @@ class Monster extends Sprite {
         "#dialogueBox"
       ).innerHTML += `<br>${playerPokemon.name} gained ${experienceGained} XP!`;
 
-      // Animate the fainting effect for the enemy Pokémon
       gsap.to(this.position, {
         y: this.position.y + 20,
       });
@@ -205,17 +204,13 @@ class Monster extends Sprite {
         opacity: 0,
       });
 
-      // Stop battle audio and play victory sound
       audio.battle.stop();
       audio.victory.play();
     } else {
-      // If the player Pokémon faints, show faint message and stop the game (or handle it)
       document.querySelector("#dialogueBox").innerHTML =
         this.name + " fainted!";
-      // Reset player's HP to 100%
-      this.health = this.maxHealth;
 
-      // Move the player Pokémon back to its starting position
+      this.health = this.maxHealth;
 
       gsap.to(this.position, {
         y: this.position.y + 20,
@@ -224,7 +219,7 @@ class Monster extends Sprite {
         opacity: 0,
       });
       audio.battle.stop();
-      audio.victory.play(); // Play a game over sound or take any other actions
+      audio.victory.play();
     }
   }
 

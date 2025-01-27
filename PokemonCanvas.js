@@ -183,6 +183,67 @@ function selectStarter(selectedPokemon) {
 
   console.log("Selected Pokémon:", selectedPokemon.name);
 
+  const detailsDiv = document.createElement("div");
+  detailsDiv.classList.add("detailsDiv");
+
+  detailsDiv.id = "pokemonDetails";
+  detailsDiv.style.position = "absolute";
+  detailsDiv.style.top = "15%";
+  detailsDiv.style.left = "calc(85% )"; // Positioning to the right of the canvas
+  detailsDiv.style.transform = "translateY(-50%)";
+  detailsDiv.style.width = "150px";
+  detailsDiv.style.padding = "10px";
+  detailsDiv.style.border = "2px solid #000";
+  detailsDiv.style.backgroundColor = "#fff";
+  detailsDiv.style.display = "flex";
+  detailsDiv.style.flexDirection = "column";
+  detailsDiv.style.alignItems = "center";
+  document.body.appendChild(detailsDiv);
+
+  // Pokémon image
+  const image = document.createElement("img");
+  image.src = selectedPokemon.frontImage; // Assuming the Pokemon has frontImage property
+  image.alt = selectedPokemon.name;
+  image.style.width = "100px";
+  image.style.height = "100px";
+  detailsDiv.appendChild(image);
+
+  // Pokémon name
+  const pokemonStats = document.createElement("div");
+  pokemonStats.classList.add("pokemon-stats");
+
+  const nameElement = document.createElement("div");
+  nameElement.classList.add("pokemon-name");
+  nameElement.innerText = selectedPokemon.name;
+  pokemonStats.appendChild(nameElement);
+
+  const statsElement = document.createElement("div");
+  statsElement.classList.add("pokemon-stats-details");
+  statsElement.innerText =
+    "LVL: " +
+    selectedPokemon.level +
+    " HP: " +
+    selectedPokemon.health +
+    "/" +
+    selectedPokemon.maxHealth;
+  pokemonStats.appendChild(statsElement);
+
+  detailsDiv.appendChild(pokemonStats);
+
+  function updatePokemonStats() {
+    pokemonStats.innerText = `Level: ${selectedPokemon.level}`;
+    pokemonStats.innerText = `HP: ${selectedPokemon.hp}/${selectedPokemon.maxHp}`;
+  }
+
+  // Example: Update when Pokémon levels up or HP changes
+  selectedPokemon.onLevelUp = () => {
+    updatePokemonStats();
+  };
+
+  selectedPokemon.onHPChange = () => {
+    updatePokemonStats();
+  };
+
   animate();
 }
 
@@ -204,6 +265,13 @@ const battleZonesMap = [];
 for (let i = 0; i < battleZonesData.length; i += 70) {
   battleZonesMap.push(battleZonesData.slice(i, 70 + i));
 }
+
+const charactersMap = [];
+for (let i = 0; i < charactersMapData.length; i += 70) {
+  charactersMap.push(charactersMapData.slice(i, 70 + i));
+}
+
+console.log(charactersMap);
 
 const boundaries = [];
 const offset = {
@@ -238,6 +306,62 @@ battleZonesMap.forEach((row, i) => {
           },
         })
       );
+  });
+});
+
+const characters = [];
+const villagerImg = new Image();
+const oldManImg = new Image();
+villagerImg.src = "./Pokemonimages/assets/Maping/Characters/Villager/Idle.png";
+oldManImg.src = "/Pokemonimages/assets/Maping/Characters/OldMan/oldMan.png";
+
+charactersMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    // 1029 = villager
+    if (symbol === 1029) {
+      characters.push(
+        new Sprite({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: villagerImg,
+          frames: {
+            max: 4,
+            hold: 60,
+          },
+          scale: 3,
+          animate: true,
+        })
+      );
+    }
+    // 1034 = OldMan
+    else if (symbol === 1034) {
+      characters.push(
+        new Sprite({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+          image: oldManImg,
+          frames: {
+            max: 4,
+            hold: 60,
+          },
+          scale: 3,
+        })
+      );
+    }
+    if (symbol !== 0) {
+      boundaries.push(
+        new Boundary({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+        })
+      );
+    }
   });
 });
 
@@ -323,8 +447,21 @@ const keys = {
   },
 };
 
-const movables = [background, ...boundaries, foreground, ...battleZones];
-
+const movables = [
+  background,
+  ...boundaries,
+  foreground,
+  ...battleZones,
+  ...characters,
+];
+const renderables = [
+  background,
+  ...boundaries,
+  ...battleZones,
+  ...characters,
+  player,
+  foreground,
+];
 function rectangularCollison({ rectangle1, rectangle2 }) {
   return (
     rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
@@ -340,15 +477,10 @@ const battle = {
 function animate() {
   const animationId = window.requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
-  background.draw();
-  boundaries.forEach((Boundary) => {
-    Boundary.draw();
+
+  renderables.forEach((renderable) => {
+    renderable.draw();
   });
-  battleZones.forEach((battleZone) => {
-    battleZone.draw();
-  });
-  player.draw();
-  foreground.draw();
 
   let moving = true;
   player.animate = false;
@@ -415,6 +547,25 @@ function animate() {
   if (keys.w.pressed && lastKey === "w") {
     player.animate = true;
     player.image = player.sprites.up;
+
+    //monitor for charachter colision
+    for (let i = 0; i < characters.length; i++) {
+      const character = characters[i];
+
+      if (
+        rectangularCollison({
+          rectangle1: player,
+          rectangle2: {
+            ...character,
+            position: {
+              x: character.position.x,
+              y: character.position.y + 3,
+            },
+          },
+        })
+      ) {
+      }
+    }
 
     for (let i = 0; i < boundaries.length; i++) {
       const Boundary = boundaries[i];

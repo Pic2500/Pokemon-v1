@@ -271,8 +271,6 @@ for (let i = 0; i < charactersMapData.length; i += 70) {
   charactersMap.push(charactersMapData.slice(i, 70 + i));
 }
 
-console.log(charactersMap);
-
 const boundaries = [];
 const offset = {
   x: -450,
@@ -320,7 +318,7 @@ charactersMap.forEach((row, i) => {
     // 1029 = villager
     if (symbol === 1029) {
       characters.push(
-        new Sprite({
+        new Character({
           position: {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
@@ -332,13 +330,14 @@ charactersMap.forEach((row, i) => {
           },
           scale: 3,
           animate: true,
+          dialogue: ["...", "You can use boat to get to new island"],
         })
       );
     }
     // 1034 = OldMan
     else if (symbol === 1034) {
       characters.push(
-        new Sprite({
+        new Character({
           position: {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
@@ -349,6 +348,7 @@ charactersMap.forEach((row, i) => {
             hold: 60,
           },
           scale: 3,
+          dialogue: ["...", "Hey , there are pokemons in tall grass!"],
         })
       );
     }
@@ -672,7 +672,39 @@ function animate() {
 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
+  if (player.isinteracting) {
+    switch (e.key) {
+      case " ":
+        player.interactionAsset.dialogueIndex++;
+
+        const { dialogueIndex, dialogue } = player.interactionAsset;
+        if (dialogueIndex <= dialogue.length - 1) {
+          document.querySelector("#characterDialougueBox").innerHTML =
+            player.interactionAsset.dialogue[dialogueIndex];
+          return;
+        }
+
+        //finish conversation
+        player.isinteracting = false;
+        player.interactionAsset.dialogueIndex = 0;
+        document.querySelector("#characterDialougueBox").style.display = "none";
+        break;
+    }
+
+    return;
+  }
   switch (e.key) {
+    case " ":
+      if (!player.interactionAsset) return;
+
+      //begining the conversation
+      const firstMessage = player.interactionAsset.dialogue[0];
+
+      document.querySelector("#characterDialougueBox").innerHTML = firstMessage;
+      document.querySelector("#characterDialougueBox").style.display = "flex";
+      player.isinteracting = true;
+      break;
+
     case "w":
       keys.w.pressed = true;
       lastKey = "w";

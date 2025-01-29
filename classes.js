@@ -179,7 +179,6 @@ class Monster extends Sprite {
 
   // Funkcija za dodavanje XP
   gainExperience(amount) {
-    console.log(`${this.name} gains ${amount} XP!`);
     this.experience += amount; // Add the gained XP
 
     // Save XP to localStorage whenever it changes
@@ -219,8 +218,6 @@ class Monster extends Sprite {
     this.experienceToNextLevel = this.calculateExperienceToNextLevel(); // Ažurira XP potreban za sledeći nivo
     this.maxHealth = this.calculateMaxHealth(); // Ažurira maksimalno zdravlje na osnovu nivoa
     this.health = this.maxHealth; // Vraća zdravlje na maksimalnu vrednost
-
-    console.log(`${this.name} je dostigao nivo ${this.level}!`);
   }
 
   // Funkcija za izračunavanje novog maksimalnog zdravlja sa nivoom

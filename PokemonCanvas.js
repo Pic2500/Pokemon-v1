@@ -3,7 +3,7 @@ let playerPokemon;
 function loadPlayerPokemon() {
   const storedPlayerPokemon = localStorage.getItem("playerPokemon");
   const storedXP = localStorage.getItem("playerXP");
-
+  console.log(storedPlayerPokemon);
   if (storedPlayerPokemon) {
     const parsedData = JSON.parse(storedPlayerPokemon);
     playerPokemon = new Monster(parsedData);
@@ -19,6 +19,7 @@ function loadPlayerPokemon() {
 }
 
 function initGame() {
+  console.log("initGame called");
   if (loadPlayerPokemon()) {
     askToContinue();
   } else {
@@ -61,6 +62,53 @@ function askToContinue() {
     console.log("Continuing with:", playerPokemon.name);
     confirmationDiv.remove();
     animate();
+
+    const detailsDiv = document.createElement("div");
+    detailsDiv.classList.add("detailsDiv");
+
+    detailsDiv.id = "pokemonDetails";
+    detailsDiv.style.position = "absolute";
+    detailsDiv.style.top = "15%";
+    detailsDiv.style.left = "calc(85% )"; // Positioning to the right of the canvas
+    detailsDiv.style.transform = "translateY(-50%)";
+    detailsDiv.style.width = "150px";
+    detailsDiv.style.padding = "10px";
+    detailsDiv.style.border = "2px solid #000";
+    detailsDiv.style.backgroundColor = "#fff";
+    detailsDiv.style.display = "flex";
+    detailsDiv.style.flexDirection = "column";
+    detailsDiv.style.alignItems = "center";
+    document.body.appendChild(detailsDiv);
+
+    // Pokémon image
+    const image = document.createElement("img");
+    image.src = playerPokemon.frontImage; // Assuming the Pokemon has frontImage property
+    image.alt = playerPokemon.name;
+    image.style.width = "100px";
+    image.style.height = "100px";
+    detailsDiv.appendChild(image);
+
+    // Pokémon name
+    const pokemonStats = document.createElement("div");
+    pokemonStats.classList.add("pokemon-stats");
+
+    const nameElement = document.createElement("div");
+    nameElement.classList.add("pokemon-name");
+    nameElement.innerText = playerPokemon.name;
+    pokemonStats.appendChild(nameElement);
+
+    const statsElement = document.createElement("div");
+    statsElement.classList.add("pokemon-stats-details");
+    statsElement.innerText =
+      "LVL: " +
+      playerPokemon.level +
+      " HP: " +
+      playerPokemon.health +
+      "/" +
+      playerPokemon.maxHealth;
+    pokemonStats.appendChild(statsElement);
+
+    detailsDiv.appendChild(pokemonStats);
   });
 
   const newGameButton = document.createElement("button");
@@ -176,12 +224,15 @@ function createStarterSelection() {
 
 function selectStarter(selectedPokemon) {
   alert(`You selected ${selectedPokemon.name} as your starter!`);
+  localStorage.setItem("playerPokemon", JSON.stringify(selectedPokemon));
+  localStorage.setItem("playerXP", 0);
   const starterDiv = document.getElementById("starterSelection");
   if (starterDiv) starterDiv.remove();
 
   playerPokemon = new Monster(selectedPokemon);
 
   console.log("Selected Pokémon:", selectedPokemon.name);
+  console.log(storedPlayerPokemon);
 
   const detailsDiv = document.createElement("div");
   detailsDiv.classList.add("detailsDiv");
@@ -311,7 +362,7 @@ const characters = [];
 const villagerImg = new Image();
 const oldManImg = new Image();
 villagerImg.src = "./Pokemonimages/assets/Maping/Characters/Villager/Idle.png";
-oldManImg.src = "/Pokemonimages/assets/Maping/Characters/OldMan/oldMan.png";
+oldManImg.src = "./Pokemonimages/assets/Maping/Characters/OldMan/oldMan.png";
 
 charactersMap.forEach((row, i) => {
   row.forEach((symbol, j) => {

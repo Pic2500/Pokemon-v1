@@ -55,11 +55,6 @@ function updateHealthBar(pokemon, healthBarSelector) {
   if (healthDisplay) {
     healthDisplay.textContent = `HP: ${pokemon.health}/${pokemon.maxHealth}`;
   }
-  console.log(
-    `${pokemon.name} Health: ${pokemon.health}/${
-      pokemon.maxHealth
-    } (${clampedPercentage.toFixed(2)}%)`
-  );
 }
 
 let enemyPokemon;

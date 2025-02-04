@@ -3,7 +3,11 @@
   box-sizing: border-box;
 }
 body {
-  background-color: black;
+  background-image: url("https://wallpapercave.com/wp/wp2860892.jpg");
+  background-size: cover; /* Adjusts the image size to cover the entire page */
+  background-position: center; /* Centers the image */
+  background-attachment: fixed; /* Keeps the background image fixed when scrolling */
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,4 +74,8 @@ button:hover {
 
 .pokemon-stats-details {
   font-size: 12px;
+}
+
+#characterDialougueBox {
+  padding: 10px;
 }

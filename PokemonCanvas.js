@@ -3,7 +3,7 @@ let playerPokemon;
 function loadPlayerPokemon() {
   const storedPlayerPokemon = localStorage.getItem("playerPokemon");
   const storedXP = localStorage.getItem("playerXP");
-  console.log(storedPlayerPokemon);
+
   if (storedPlayerPokemon) {
     const parsedData = JSON.parse(storedPlayerPokemon);
     playerPokemon = new Monster(parsedData);
@@ -69,11 +69,11 @@ function askToContinue() {
     detailsDiv.id = "pokemonDetails";
     detailsDiv.style.position = "absolute";
     detailsDiv.style.top = "15%";
-    detailsDiv.style.left = "calc(85% )"; // Positioning to the right of the canvas
+    detailsDiv.style.left = "calc(87% )"; // Positioning to the right of the canvas
     detailsDiv.style.transform = "translateY(-50%)";
     detailsDiv.style.width = "150px";
     detailsDiv.style.padding = "10px";
-    detailsDiv.style.border = "2px solid #000";
+    detailsDiv.style.border = "4px solid black";
     detailsDiv.style.backgroundColor = "#fff";
     detailsDiv.style.display = "flex";
     detailsDiv.style.flexDirection = "column";
@@ -114,7 +114,6 @@ function askToContinue() {
   const newGameButton = document.createElement("button");
   newGameButton.innerText = "Start a New Game";
   newGameButton.addEventListener("click", () => {
-    console.log("New Game Button Clicked");
     localStorage.removeItem("playerPokemon");
 
     playerPokemon = null;
@@ -178,7 +177,7 @@ function createStarterSelection() {
     pokemonContainer.style.border = "1px solid #000";
     pokemonContainer.style.borderRadius = "5px";
     pokemonContainer.style.transition = "transform 0.2s";
-    pokemonContainer.style.width = "120px"; // Set a fixed width for each Pokémon container
+    pokemonContainer.style.width = "150px"; // Set a fixed width for each Pokémon container
     pokemonContainer.style.height = "150px"; // Set a fixed height for each Pokémon container
     pokemonContainer.style.justifyContent = "center"; // Center Pokémon name and image
     pokemonContainer.style.textAlign = "center"; // Center text inside the container
@@ -231,20 +230,17 @@ function selectStarter(selectedPokemon) {
 
   playerPokemon = new Monster(selectedPokemon);
 
-  console.log("Selected Pokémon:", selectedPokemon.name);
-  console.log(storedPlayerPokemon);
-
   const detailsDiv = document.createElement("div");
   detailsDiv.classList.add("detailsDiv");
 
   detailsDiv.id = "pokemonDetails";
   detailsDiv.style.position = "absolute";
   detailsDiv.style.top = "15%";
-  detailsDiv.style.left = "calc(85% )"; // Positioning to the right of the canvas
+  detailsDiv.style.left = "calc(87% )"; // Positioning to the right of the canvas
   detailsDiv.style.transform = "translateY(-50%)";
   detailsDiv.style.width = "150px";
   detailsDiv.style.padding = "10px";
-  detailsDiv.style.border = "2px solid #000";
+  detailsDiv.style.border = "4px solid black";
   detailsDiv.style.backgroundColor = "#fff";
   detailsDiv.style.display = "flex";
   detailsDiv.style.flexDirection = "column";

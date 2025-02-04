@@ -163,7 +163,9 @@ function initBattle() {
 
         updateHealthBar(playerPokemon, "#playerHealthBar");
 
+        let moving = true;
         function showLoseMessage() {
+          moving = false;
           const loseMessageDiv = document.createElement("div");
           loseMessageDiv.id = "loseMessage";
           loseMessageDiv.innerHTML =
@@ -189,6 +191,7 @@ function initBattle() {
             loseMessageDiv.style.opacity = 0; // Fade out the message
             setTimeout(() => {
               loseMessageDiv.style.display = "none";
+              moving = true;
               playerPokemon.opacity = 1;
 
               // Hide after the fade-out effect

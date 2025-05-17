@@ -39,8 +39,8 @@ const playermonster = {
       y: 352,
     },
 
-    backImage: "./Pokemonimages/Monsters/SquirtleBack.png",
-    frontImage: "./Pokemonimages/Monsters/SquirtleFront.png",
+    backImage: "./Pokemonimages/Monsters/squirtleFront.png",
+    frontImage: "./Pokemonimages/Monsters/squirtleFront.png",
 
     animate: true,
     name: "Squirtle",
